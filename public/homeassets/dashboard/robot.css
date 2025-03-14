@@ -1,0 +1,65 @@
+input {
+  background-color: #243246 !important;
+  border: 0 !important;
+  color: white !important;
+}
+input::-moz-placeholder {
+  color: white !important;
+  opacity: 0.3 !important;
+}
+input::placeholder {
+  color: white !important;
+  opacity: 0.3 !important;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=submit] {
+  color: white;
+}
+
+select {
+  background-color: #243246 !important;
+  border: 0 !important;
+  color: white !important;
+}
+
+.form-select {
+  background-image: url('data:image/svg+xml,<svg fill="%23ffffff" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve" stroke="%23ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path></g></svg>') !important;
+}
+
+.input-group span {
+  background-color: #243246 !important;
+  border: 0 !important;
+  color: white !important;
+}
+
+.strategy-card {
+  background-color: #243246 !important;
+}
+.strategy-card #strategy-image {
+  width: 14%;
+}
+.strategy-card__content {
+  width: 80%;
+}
+.strategy-card h4 {
+  font-size: 15px;
+}
+.strategy-card h6 {
+  font-size: 12px;
+}
+.strategy-card p {
+  font-size: 13px;
+}
+
+.robot-timer .spinner .loading_timer {
+  width: 80px;
+  height: 80px;
+}
+.robot-timer .timer_cover .timer_counter {
+  width: 80px;
+  height: 80px;
+}/*# sourceMappingURL=robot.css.map */

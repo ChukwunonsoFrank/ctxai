@@ -1,0 +1,155 @@
+@extends('home.layout.layout')
+
+@section('content')
+<section class="single-page bg-custom text-white" style="margin-top:95px!important; padding-top:50px!important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 style="text-align: start;color:white;">Services agreement</h3>
+                <p><strong></strong></p>
+                <h3 style="text-align: start;color:white;"><strong>Last updated: Dec 3, 2023</strong></h3>
+                <p></p>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);">The Company provides access to its Nxcai Bot application to any eligible person as determined herein that accepts this Service Agreement (you) and to its features under the terms of this public offer on the following conditions.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">1. Terms used in the agreement</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.1</b> The <b style="color: rgb(255, 255, 255);">Acceptance</b> is your any action certifying that you have fully accepted the conditions of the Agreement, including taking actions to fulfill the conditions in this Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.2</b> The <b style="color: rgb(255, 255, 255);">Agreement</b> is this Service Agreement regulating the use of the Services by you, concluded between the Company and you on a non-exclusive and non-discriminatory basis as a result of the acceptance by you of a public offer, which grants to the Company and you the rights and imposes obligations specified in this Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.3</b> The <b style="color: rgb(255, 255, 255);">App</b> is the Nxcai Bot mobile application designed to automate trading processes at the Nxcai Trade platform.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.4</b> The <b style="color: rgb(255, 255, 255);">Company</b> s a legal entity operating under the Nxcai Bot title.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.5</b> The <b style="color: rgb(255, 255, 255);">Parties</b> are the parties to the current Agreement, namely you and the Company. Each separately is referred to as the <b style="color: rgb(255, 255, 255);">Party</b>.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.6</b> The <b style="color: rgb(255, 255, 255);">Services</b> consist of the access to and use of the App and other services, specified by the Agreement and/or the <a target="_blank" href="https://nxcai.com/terms" style="color: rgb(0, 148, 255);">Terms and Conditions</a> and/or available via the App, in particular, automated trading at the Nxcai Trade platform via the App.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">1.7</b> The <b style="color: rgb(255, 255, 255);">Site</b> is <a href="https://nxcai.com/" target="_blank" style="color: rgb(0, 148, 255);">nxcai.com</a> webpage with all subpages, related subdomains and domains with URL redirection to that website and serving as an access point to the information located on this website.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">2. General statements</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">2.1</b> The Parties recognize that the Acceptance of the current Agreement shall be unconditional. The acceptance of this Agreement in any case constitutes your consent to the terms of the Terms and Conditions and <a target="_blank" href="https://nxcai.com/privacy" style="color: rgb(0, 148, 255);">Privacy Policy</a>.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">2.2</b> For accessing some functionality of the Services, you shall accept the Terms and Conditions of the Nxcai Trade platform, register an account with them, and allow the App to be connected to your account at Nxcai Trade platform. All registration and/or login options are managed by Nxcai Trade platform and we do not have access to your credentials, with exception to your email and ID of the profile. Please note that if you do not accept Terms and Conditions of Nxcai Trade platform, you will not be eligible to use some features of the Services. Breach of Terms and Conditions of the Nxcai Trade platform constitutes a material breach of this Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">2.3</b> The acceptance of the Agreement is constituted with manual acceptance by you of the Agreement and Terms and Conditions before connecting the App with your profile at the Nxcai Trade platform.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">2.4</b> The edition of the Agreement available at the Site is actual and final.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">2.5</b> The Company may at any time terminate the Agreement in whole or in part, as well as suspend the provision of the Services, which will not be considered an unlawful act on its part and cannot be a ground for any claims.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">3. Subject</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.1</b> The Company provides to you the Services on conditions stipulated herein. The App is distributed on a free-of-charge basis.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.2</b> The Company provides the Services as a result of your explicitly expressed will. Any manipulations with your Nxcai Trade profile are made solely with your consent. The App does not have access to depositions or withdrawals and is not designed to do so.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.3</b> The App may use WebView in order to display to you some parts of the Nxcai Trade platform. Please note that WebView lacks some of the features of fully-developed browsers and your navigation experience via WebView may differ.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.4</b> As a part of the Services, you are entitled to use the App in the following modes:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.4.1</b> Not Activated: this mode is available by default and its functions are limited to demo-trading, the App does not provide signals, the trading profit is limited to a certain threshold when a manual reset is required, your support queries are analyzed in a standard priority.</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.4.2</b> Activated: this mode is available after connecting the App with the profile at the Nxcai Trade platform and depositing a fixed sum indicated in the App. Such mode allows trading with the real account, displays non-individualized signals, the trading profit is unlimited, the support queries are analyzed in a higher priority.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.5</b> If you decide to use our Services, you may be prompted to allow the App to access your account at the Nxcai Trade platform via API. If your account is suspended, deactivated, or access is denied or disallowed, some features of the Services will become inaccessible.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">3.6</b> The Company has the right to amend the Services at any time (e.g., introduce new types of Services, exclude certain types of Services, change the scope of Services and otherwise change the Services). You cannot change the scope of Services provided to you.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">4. Rights and duties of the parties</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.1</b> The obligations of the Company:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.1.1</b> the Company shall provide Services to you following the conditions of the current Agreement;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.1.2</b> the Company shall inform you about the sufficient changes to this Agreement, the Terms and Conditions and Privacy Policy.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.2</b> The rights of the Company:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.2.1</b> the Company has the right on its discretion to modify, change or terminate the provision of Services anytime without prior notification;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.2.2</b> the Company has the right to restrict your access to the Services in case you are not eligible to use them;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.2.3</b> the Company has the right to terminate the Agreement in case you do not fulfil your obligations;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.2.4</b> the Company reserves the right to assign any rights or obligations contained in the Agreement at its sole discretion.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3</b> Your obligations:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.1</b> you shall read carefully and accept the Agreement, Terms and Conditions, and Privacy Policy before engaging with the Company;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.2</b> inform the Company of breach or suspicion of breach of this Agreement, Terms and Conditions, or Privacy Policy of any kind you are aware of;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.3</b> comply with a dispute settlement procedure established herein;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.4</b> notify the Company about any claims that may arise during or in relation to the business engagement with the Company;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.5</b> comply with the conduct requirements listed in the Terms and Conditions;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.6</b> comply with the laws and regulations of the territory from which you access or use the Services or that are otherwise applicable to you;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.7</b> under no circumstances you shall disclose, share, reproduce, copy, distribute, make public, and in any other way use any results of the Services that become available to you in the process or as a result of the provision of the Services;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.8</b> monitor any updates to the information posted on the Site, including changes to the Terms and Conditions, changes to this Agreement and any other materials that are directly or indirectly related to the provision of the Services or affect them. You waive the right to refer to the lack of awareness of these changes, if such changes are posted on the Site;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.3.9</b> not to reverse engineer the code of the App, interfere with the Site and internal networks of the Company.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.4</b> Your rights:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.4.1</b> to receive the Services in the scope established by this Agreement;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">4.4.2</b> to terminate the Agreement as determined herein.</p>
+                    </div>
+                </div>
+                <h3 style="text-align: start;color:white;;">5. Responsibility ot the parties</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.1</b> You understand and agree that the Services are provided on &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. The Company is not responsible under any circumstances for:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.1.1</b> the quality and reliability of the Services provided to you;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.1.2</b> your and/or third parties&rsquo; losses and/or lost profits.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.2</b> Each Party shall bear responsibility for failure to perform or inappropriate performance of the obligations by one of the Parties according to the Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.3</b> In case there are claims, suits, fines from the side of third parties and/or controlling organizations, related to infringing the rights of third parties when providing Services according to this Agreement, this is your sole responsibility to resolve such issues on your own, without referring to the Company, and to compensate the Company in full scope any losses, including fine sanctions resulting from the infringement the rights, duties, guarantees etc. mentioned above.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">5.4</b> The Company is not responsible for the actions or the inaction and the decisions of governmental and other entities impacting the possibility of fulfillment of the current Agreement.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">6. Changes to and termination of the agreement</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">6.1</b> The Agreement is active since the moment of publishing on the Site of the Company, and becomes binding since the moment it is accepted by you.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">6.2</b> The Agreement can be terminated after you discontinue App&rsquo;s access to your profile at the Nxcai Trade platform or if such profile is terminated or suspended. The Agreement can be also terminated by the Party if the other Party fails to fulfil its obligations or at the request of any Party. In case the Agreement is terminated you will no longer be allowed to use the Services.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">6.3</b> In case of the significant violation of the provisions of the Agreement by one of the Parties, the other Party has the right to unilaterally terminate the Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">6.4</b> The current Agreement can be changed or modified by the Company with a publication of the new version on the Site. In case you do not agree with the changes, you shall cease using the Services.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">7. Warranties and representation</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.1</b> Excluding warranties mentioned in this Agreement, the Company does not provide any other direct or indirect guarantees at this Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.2</b> By accepting this Agreement, you warrant and represent that you are a legally capable natural person of at least 18 year old (or older pursuant to legal requirements in your jurisdiction), self-employed person or an authorized representative of a legal person that is willing to enter into the Agreement with the Company in electronic form as a result of a manual acceptance, thereby, obtaining a right to use the App and a duty to fulfil your obligations under the Agreement. You represent that you are not a citizen of the United States of America, reside or domiciled in the United States of America or in any other way be subject to the jurisdiction of the United States of America or listed on any U.S. Government list of prohibited or restricted countries or parties.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3</b> The acceptance of the conditions of the current Agreement you confirm and guarantee that:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.1</b> in case you receive incorrect data or materials, and still decide to use them you have full responsibility for any negative consequences, related to provision of such Services by the Company;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.2</b> You accept the Agreement voluntarily, and this proves that:</p>
+                        <div>
+                            <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.2.1</b> you have read the Agreement,</p>
+                            <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.2.2</b> you have understood the conditions specified of the Agreement,</p>
+                            <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.2.3</b> you have understood all the provisions of the Agreement and consequences of your actions or negligence regarding the conclusion and fulfillment of the Agreement;</p>
+                        </div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.3.3</b> You have all the rights and permissions needed to conclude and execute the Agreement.</p>
+                    </div>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">7.4</b> The guarantees mentioned in the Agreement act for the unlimited period of time and shall survive the termination or expiration of this Agreement.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">8. Exclusion and limitation of liability</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.1</b> The Company does not provide any implied warranties with regard to the Services or the App and does not warrant their merchantability or fitness for a particular purpose.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.2</b> The Company assumes no liability towards you for the performance of the App, the ability of the App to meet your expectations, requirements, be error-free, virus-free, or operate without interruption, or that information transmitted through the communication means shall be accurate or timely. The Company shall also assume no liability for other users of the Services or any employees of the Company to perform as expected.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.3</b> The Company shall in particular not be liable for any loss of any kind suffered or incurred by you:</p>
+                    <div>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.3.1</b> as a result of your negligence;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.3.2</b> in case of use by a third party of your login credentials either communicated to this third party by you or obtained by the third party in an abusive or fraudulent manner;</p>
+                        <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">8.3.3</b> in case the Company imposes any limits, restrictions, or preconditions.</p>
+                    </div>
+                </div>
+                <h3 style="text-align: start;color:white;;">9. Waiver</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">9.1</b> THE SERVICES PROVIDED BY THE COMPANY ARE NOT RELATED TO PROVIDING TRADING, FINANCIAL, OR INVESTMENT ADVICE. THE COMPANY DOES NOT ENCOURAGE MENTIONED ACTIVITIES. THE COMPANY IS NOT A REGISTERED TRADING, FINANCIAL OR INVESTMENT ADVISOR.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">9.2</b> IN NO EVENT SHALL THE COMPANY, ITS EMPLOYEES, OFFICERS, DIRECTORS, AFFILIATES, AGENTS OR LICENSORS BE LIABLE TO YOU OR TO ANY THIRD PARTY OR TO ANYONE ELSE FOR ANY KIND OF FINANCIAL LOSS, LOST PROFITS, ANY SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGE OR ANY OTHER SIMILAR DAMAGE OR ANY OTHER LOSS OR INJURY, RESULTING DIRECTLY OR INDIRECTLY FROM USE OF THE SERVICES.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">10. Force-majeure</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">10.1</b> You understand and agree that the provision of the Services depends on the availability and technical capabilities of the Company, the state of the Internet and is also regulated by legal requirements. In this regard, the Company may establish the conditions and restrictions for the use and provision of the Services, in connection with which there may be restrictions in the provision of the Services, as well as the impossibility of their provision.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">10.2</b> The Parties are relieved from a responsibility for not accomplishing or inadequate performance of their duties according to the current Agreement, caused by the irresistible power (force-majeure), which happened after the conclusion of the current Agreement. In order for such circumstances to have an unusual character the Company and you could neither foresee nor overcome such circumstances by the reasonable actions. Such conditions include: floods, fire, earthquake and other natural effects, war, armed conflicts or any military activity, acts or actions of the competent bodies, governmental bodies and any other similar conditions, which are not under control of the Parties.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">10.3</b> If the obstacles of the force-majeure last for more than 3 months, any Party may terminate the current Agreement.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">11. Governing law and dispute settlement</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">11.1</b> This Agreement is governed by the laws of England and Wales without regard to its conflict-of-laws principles.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">11.2</b> All disputes arising from the Agreement or in connection with it shall be resolved by the Parties in the mandatory amicable negotiation procedure. The Party that received the claim must return an answer to it to the other Party within (30) thirty business days of the receipt.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">11.3</b> If the dispute or claim cannot be resolved in a negotiation procedure, the exclusive means of resolving any dispute or claim arising out of or relating to this Agreement (including any alleged breach thereof), shall be binding arbitration administered in accordance with the Arbitration Rules of the Arbitration Institute of the Stockholm Chamber of Commerce. The seat of the arbitration shall be London, United Kingdom. The arbitrator shall be one, the language of proceedings shall be English. You may not under any circumstances commence or maintain against the Company any class action, class arbitration, or other representative action or proceeding. The governing law shall be the law established in clause 11.1.</p>
+                </div>
+                <h3 style="text-align: start;color:white;;">12. Other conditions</h3>
+                <div style="text-align: start;color: rgb(0, 0, 0);color:white;font-size: medium;">
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">12.1</b> The Company does not accept any provisions, obligations or duties regarding the subject of the Agreement, excluding the ones listed in the Agreement, which regulate the accomplishment of the Agreement, excluding the cases when such provisions, obligations or duties are stipulated in a written form and are signed by the Company and you. In case any other provision contradicts the provisions of this Agreement, the provisions of this Agreement shall prevail.</p>
+
+                   
+
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">12.2</b> If any of the conditions of the Agreement is considered void, illegal or cannot be in force because of the relevant legislation, such conditions should be disregarded, while the other terms and conditions of the Agreement do not change and are still in force. In case of discrepancy between the English version of the Terms and other language versions of the Terms, the English version shall prevail. Translations of the Terms in other languages are not binding on the Company.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">12.3</b> Any existing agreements with identical subjects made between Parties before conclusion of this Agreement are terminated since the moment of conclusion of the given Agreement.</p>
+                    <p style="color:white;font-size: var(--font-size-desktop);"><b style="color: rgb(255, 255, 255);">12.4</b> In case there are any questions, inquiries, complaints, suggestions, objections and other forms of feedback regarding the performance of Services, you may contact the Company via the following email: <span style="color: rgb(0, 148, 255);">support@nxcai.com</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
