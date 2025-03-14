@@ -1123,7 +1123,7 @@ class UserController extends Controller
 
     public function dashboard(Request $request)
     {
-        $details = $this->getUserDetails();
+        $this->getUserDetails();
         $tradeEntry = $this->fetchCurrentBotTrade();
 
         $tradingbots = tradingbot::join('plans', 'tradingbots.strategy_id', '=', 'plans.id')
@@ -1166,12 +1166,12 @@ class UserController extends Controller
             Session::put('active_robot_modal', 'activebottrade');
         }
 
-        return view('user.dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+        return view('user.dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
     }
 
     public function chart(Request $request)
     {
-        $details = $this->getUserDetails();
+        $this->getUserDetails();
         $tradeEntry = $this->fetchCurrentBotTrade();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
         $tradingbots = tradingbot::join('plans', 'tradingbots.strategy_id', '=', 'plans.id')
@@ -1181,16 +1181,15 @@ class UserController extends Controller
                 'tradingbots.status' => 1,
             ])
             ->get()->toArray();
-        return view('user.chart')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+        return view('user.chart')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
     }
 
     public function faq()
     {
+        $this->getUserDetails();
         if (Session::get('has_robot_modal_displayed') && empty(Session::get('redirect_to_active_bot_trade'))) {
             Session::put('display_robot_modal', 'disabled');
         }
-
-        $details = $this->getUserDetails();
         $tradeEntry = $this->fetchCurrentBotTrade();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
         $tradingbots = tradingbot::join('plans', 'tradingbots.strategy_id', '=', 'plans.id')
@@ -1200,7 +1199,7 @@ class UserController extends Controller
                 'tradingbots.status' => 1,
             ])
             ->get()->toArray();
-        return view('user.faq')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+        return view('user.faq')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
     }
 
     public function changeassetpair(Request $request)
@@ -1221,7 +1220,7 @@ class UserController extends Controller
     {
         $plans = plans::query()->orderBy('order', 'asc')->get()->toArray();
 
-        $details = $this->getUserDetails();
+        $this->getUserDetails();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
 
         $tradeEntry = $this->fetchCurrentBotTrade();
@@ -1295,11 +1294,11 @@ class UserController extends Controller
                     ]);
 
                     session()->flash('success_message', 'Robot started successfully!');
-                    return redirect()->intended('user/dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+                    return redirect()->intended('user/dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
                 } else {
                     Session::put('active_robot_modal', 'robotsettings');
                     session()->flash('error_message', 'You are unable to trade at the moment. Please contact support to learn more.');
-                    return redirect()->intended('user/dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+                    return redirect()->intended('user/dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
                 }
             }
 
@@ -1320,16 +1319,16 @@ class UserController extends Controller
                     ]);
 
                     session()->flash('success_message', 'Robot started successfully!');
-                    return redirect()->intended('user/dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+                    return redirect()->intended('user/dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
                 } else {
                     Session::put('active_robot_modal', 'robotsettings');
                     session()->flash('error_message', 'You are unable to trade at the moment. Please contact support to learn more.');
-                    return redirect()->intended('user/dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+                    return redirect()->intended('user/dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
                 }
             }
         }
 
-        return redirect()->intended('user/dashboard')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
+        return redirect()->intended('user/dashboard')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with(compact('tradeEntry'));
     }
 
     public function calculateCompanyCommission($profit)
@@ -1344,6 +1343,7 @@ class UserController extends Controller
     {
         $userTradingBotId = $request->input('tradingbot_id');
         $robotStoppedAt = $request->input('robot_stopped_at');
+        $this->getUserDetails();
         Log::info($userTradingBotId);
         Log::info($robotStoppedAt);
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
@@ -1437,9 +1437,7 @@ class UserController extends Controller
                         ];
                     }, $tradingbotshistory);
 
-                    $details = $this->getUserDetails();
-
-                    return view('user.tradingbot')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
+                    return view('user.tradingbot')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
                 }
             } elseif ($tradingbot['account_type'] === "demo" & $tradingbot['status'] === '1') {
                 try {
@@ -1451,6 +1449,8 @@ class UserController extends Controller
                     DB::commit();
                 } catch (\Exception $e) {
                     DB::rollBack();
+
+                    $this->getUserDetails();
 
                     session()->flash('error_message', 'Network error! Please try again.');
 
@@ -1524,10 +1524,8 @@ class UserController extends Controller
                             "display_profit" => $amountEarned
                         ];
                     }, $tradingbotshistory);
-
-                    $details = $this->getUserDetails();
             
-                    return view('user.tradingbot')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
+                    return view('user.tradingbot')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
                 }
             }
         }
@@ -1604,9 +1602,7 @@ class UserController extends Controller
             ];
         }, $tradingbotshistory);
 
-        $details = $this->getUserDetails();
-
-        return view('user.tradingbot')->with($details)->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
+        return view('user.tradingbot')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
     }
 
     public function getCurrentEarned(Request $request)
@@ -1639,8 +1635,7 @@ class UserController extends Controller
             ->get()->toArray();
         $tradeEntry = $this->fetchCurrentBotTrade();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
-        $details = $this->getUserDetails();
-        return view('user.account')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with($details)->with(compact('tradeEntry'));
+        return view('user.account')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots'))->with($this->getUserDetails())->with(compact('tradeEntry'));
     }
 
     public function deposit()
@@ -1655,12 +1650,12 @@ class UserController extends Controller
     {
         //page session
         Session::put('page', 'withdraw');
-        $details = $this->getUserDetails();
-        return view('user.withdraw')->with($details);
+        return view('user.withdraw')->with($this->getUserDetails());
     }
 
     public function tradingbot(Request $request)
     {
+        $this->getUserDetails();
         $tradeEntry = $this->fetchCurrentBotTrade();
         if (Session::get('has_robot_modal_displayed')) {
             Session::put('display_robot_modal', 'disabled');
@@ -1729,8 +1724,8 @@ class UserController extends Controller
                 "display_profit" => floatval($amountEarned)
             ];
         }, $tradingbotshistory);
-        $details = $this->getUserDetails();
-        return view('user.tradingbot')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($details)->with(compact('tradingbots', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
+        
+        return view('user.tradingbot')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('tradingbots', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
     }
 
     public function fetchBotTradeForBotId($id)
