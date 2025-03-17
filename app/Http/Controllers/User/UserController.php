@@ -1343,9 +1343,16 @@ class UserController extends Controller
     {
         $userTradingBotId = $request->input('tradingbot_id');
         $robotStoppedAt = $request->input('robot_stopped_at');
-        $this->getUserDetails();
+
+        if (empty($userTradingBotId) || $robotStoppedAt === "") {
+            session()->flash('error_message', 'Network error! Please try again.');
+            return redirect()->back();
+        }
+
         Log::info($userTradingBotId);
         Log::info($robotStoppedAt);
+
+        $this->getUserDetails();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
 
         $tradeEntry = $this->fetchCurrentBotTrade();
@@ -1355,7 +1362,7 @@ class UserController extends Controller
             $companyCommission = $this->calculateCompanyCommission($tradingbot['amount_earned']);
             if ($tradingbot['account_type'] === "live" & $tradingbot['status'] === '1') {
                 try {
-                    $newuserbalance = floatval(Auth::User()->balance) + (round(floatval($tradingbot['amount_earned']), 2) - floatval($companyCommission)) + floatval($tradingbot['amount']);
+                    $newuserbalance = floatval(Auth::User()->balance) + round(floatval($tradingbot['amount_earned']), 2)  + floatval($tradingbot['amount']) - floatval($companyCommission);
                     DB::beginTransaction();
                     $demobalance_updated = User::where('id', Auth::User()->id)->update(['balance' => strval($newuserbalance)]);
                     $tradingbot_updated = tradingbot::where('id', intval($userTradingBotId))->update(['status' => '0']);
@@ -1441,7 +1448,7 @@ class UserController extends Controller
                 }
             } elseif ($tradingbot['account_type'] === "demo" & $tradingbot['status'] === '1') {
                 try {
-                    $newuserdemo_balance = floatval(Auth::User()->demo_balance) + (round(floatval($tradingbot['amount_earned']), 2) - floatval($companyCommission)) + floatval($tradingbot['amount']);
+                    $newuserdemo_balance = floatval(Auth::User()->demo_balance) + round(floatval($tradingbot['amount_earned']), 2) + floatval($tradingbot['amount']) - floatval($companyCommission);
                     DB::beginTransaction();
                     $demobalance_updated = User::where('id', Auth::User()->id)->update(['demo_balance' => strval($newuserdemo_balance)]);
                     $tradingbot_updated = tradingbot::where('id', intval($userTradingBotId))->update(['status' => 0]);

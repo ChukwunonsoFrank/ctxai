@@ -122,10 +122,6 @@
             document.getElementById('amount_to_send').innerText = `$${depositAmount.value} in ${wallet[0].coin_name}`;
             document.getElementById('amount_to_send_btn').innerText = `$${depositAmount.value}`;
         }
-
-        // function cancelRobotRequest() {
-        //     document.getElementById("stop__robot__form").submit();
-        // }
     </script>
 
     <script>
@@ -339,6 +335,11 @@
 </head>
 
 <body id="body_component" class="bg-dashboard font-sans" x-data="{ isSubmitDepositDataButtonDisabled: false, isSubmitWithdrawalDataButtonDisabled: false, isStartTradeButtonDisabled: false, depositStep: 1, withdrawStep: 1, showDepositAmountInput: false, showWithdrawAmountInput: false, selectedAccountBoolean: false, durationTitle: '', depositPaymentMethodTitle: '', withdrawPaymentMethodTitle: '', depositPaymentMethod: '', withdrawPaymentMethod: '', currentNavbarIcon: 'dashboard', isCancelModalOpen: false, isHowToUseModalOpen: false, isDepositModalOpen: false, isWithdrawModalOpen: false, isWithdrawOTPModalOpen: false, isRobotModalOpen: false, isAccountModalOpen: false, isSupportPortalOpen: false, isActiveBotTradeModalOpen: false, isQRCodeDepositModalOpen: false, isStrategyDropdownOpen: false, isAccountDropdownOpen: false, isDurationDropdownOpen: false, isDepositPaymentMethodDropdownOpen: false, isWithdrawPaymentMethodDropdownOpen: false, selectedStrategy: { id: '', name: '', minProfitRange: '', maxProfitRange: '', totalDuration: '', minAmount: '', image: '', accumulatedDuration: 1, tradeAmount: '', account: '' }, submitWithdrawalData() { let withdrawAmount = document.getElementById('withdraw_amount').value; let withdrawPaymentMethod = document.getElementById('withdraw_payment_method').value; let withdrawPayoutAddress = document.getElementById('withdraw_payout_address').value; let withdrawOTP = document.getElementById('withdraw_otp').value; document.getElementById('withdraw__amount').value = withdrawAmount; document.getElementById('withdraw__payment__method').value = withdrawPaymentMethod; document.getElementById('withdraw__payout__address').value = withdrawPayoutAddress; document.getElementById('withdraw__otp').value = withdrawOTP; try { document.getElementById('withdraw__data__form').submit(); } catch (error) { this.isSubmitWithdrawalDataButtonDisabled = true; console.log(error); } }, submitDepositData() { let depositAmount = document.getElementById('deposit_amount').value; let paymentMethod = document.getElementById('deposit_payment_method').value; document.getElementById('deposit__amount__submit').value = depositAmount; document.getElementById('payment__method__submit').value = paymentMethod; try { document.getElementById('deposit__data__form').submit(); } catch (error) { this.isSubmitDepositDataButtonDisabled = false; console.log(error) } }, submitTradeRequest(liveBalance, demoBalance, userStatus) { let tradeAmount = document.getElementById('strategy_trade_amount').value; let minAmount = document.getElementById('strategy_min_amount').value; let tradeAccount = document.getElementById('strategy_trade_account').value; if(Number(userStatus) === 0) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('You are unable to trade at the moment. Please contact support to learn more.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(Number(tradeAmount) < Number(minAmount)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text(`Minimum amount is $${minAmount}`); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(tradeAccount === 'demo' && Number(tradeAmount) > Number(demoBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else if(tradeAccount === 'live' && Number(tradeAmount) > Number(liveBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital. Please fund your wallet to start trading'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else { document.getElementById('execute__trade__form').submit(); }}, checkInputFields(id, balance) { let amount = document.getElementById(id).value; if(!amount) { $('#error_notification').text('Please input an amount'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) < 100) { $('#error_notification').text('Minimum deposit amount is $100'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) >= 100) { this.depositStep++ } if (amount && id === 'withdraw_amount' && Number(amount) < 10) { $('#error_notification').text('Minimum withdrawal amount is $10'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) > balance) { $('#error_notification').text('Insufficient withdrawal balance.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) >= 10 && Number(amount) <= balance) { this.withdrawStep++ } }, toggleCancelModal() { this.isCancelModalOpen = !this.isCancelModalOpen }, toggleAccountModal() { this.isAccountModalOpen = !this.isAccountModalOpen }, toggleSupportPortal() { this.isSupportPortalOpen = !this.isSupportPortalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleDepositModal() { document.getElementById('deposit_amount').value = ''; this.depositStep = 1; this.depositPaymentTitle = ''; this.depositPaymentMethod = ''; this.isDepositModalOpen = !this.isDepositModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleWithdrawModal() { this.isWithdrawModalOpen = !this.isWithdrawModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleRobotModal(robotModal) { this.isDepositModalOpen = false; if (robotModal === 'robotsettings') { this.isRobotModalOpen = !this.isRobotModalOpen; } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = !this.isActiveBotTradeModalOpen; } else { this.isRobotModalOpen = !this.isRobotModalOpen; } }, toggleAccountDropdown() { this.isAccountDropdownOpen = !this.isAccountDropdownOpen }, toggleDurationDropdown() { this.isDurationDropdownOpen = !this.isDurationDropdownOpen }, toggleDepositPaymentMethodDropdown() { this.isDepositPaymentMethodDropdownOpen = !this.isDepositPaymentMethodDropdownOpen }, toggleWithdrawPaymentMethodDropdown() { this.isWithdrawPaymentMethodDropdownOpen = !this.isWithdrawPaymentMethodDropdownOpen }, toggleStrategyDropdown() { this.isStrategyDropdownOpen = !this.isStrategyDropdownOpen }, selectTradingAccount(accountBoolean) { if (accountBoolean === true) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; this.isAccountDropdownOpen = false } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; this.isAccountDropdownOpen = false } }, selectTradingAccountOnLoad(liveBalance) { if(Number(liveBalance) > 0) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; } }, selectTradingDuration(duration, title) { this.selectedStrategy.accumulatedDuration = duration; this.durationTitle = title; this.isDurationDropdownOpen = false }, selectDepositPaymentMethod(method, title) { this.depositPaymentMethod = method; this.depositPaymentMethodTitle = title; this.isDepositPaymentMethodDropdownOpen = false; this.depositStep = 3; }, selectWithdrawPaymentMethod(method, title) { this.withdrawPaymentMethod = method; this.withdrawPaymentMethodTitle = title; this.isWithdrawPaymentMethodDropdownOpen = false; this.withdrawStep = 3; }, selectStrategy(id, name, minRoi, maxRoi, totalDuration, minAmount, image) { this.selectedStrategy.id = id; this.selectedStrategy.name = name; this.selectedStrategy.minRoi = minRoi; this.selectedStrategy.maxRoi = maxRoi; this.selectedStrategy.totalDuration = totalDuration; this.selectedStrategy.minAmount = minAmount; document.getElementById('strategy_min_amount').value = minAmount; this.selectedStrategy.image = image; this.isStrategyDropdownOpen = false }, showHowToUseModalOnJustRegistered(justRegistered) { if(justRegistered === true) { this.isHowToUseModalOpen = true } }, showRobotModalOnLoad(robotModal) { if (robotModal === 'robotsettings') { this.isRobotModalOpen = true } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = true } else if (robotModal === 'disabled') { this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; } }, proceedToQRCodeModal() { this.isDepositModalOpen = false; this.isQRCodeDepositModalOpen = true }, proceedToOTPModal() { this.isWithdrawModalOpen = false; this.isWithdrawOTPModalOpen = true }, goBackDeposit() { document.getElementById('deposit__qrcode__modal').classList.add('hidden'); $('#qrcode').empty(); } }">
+    <form id="stop__robot__form" action="{{ route('stoprobot') }}" method="POST">
+        @csrf
+        <input id="submit_tradingbot_id" type="hidden" name="tradingbot_id" value="">
+        <input id="robot_stopped_at" type="hidden" name="robot_stopped_at" value="">
+    </form>
     <div class="flex fixed top-2 w-full justify-center z-50">
         <!-- AJAX invoked notifications -->
         <div id="error_notification" class="bg-[#fecaca] hidden text-[#941a1b] w-80 py-3 px-4 rounded-lg text-xs text-center font-semibold"></div>
@@ -941,7 +942,7 @@
                 </div>
             </div>
             <input id="strategy_min_amount" type="hidden">
-            <form id="execute__trade__form" action="{{ url('/user/robot') }}" method="post">
+            <form id="execute__trade__form" action="{{ url('/user/robot') }}" method="POST">
                 @csrf
                 <input id="strategy_trade_amount" x-model="selectedStrategy.tradeAmount" type="hidden" name="amount">
                 <input id="strategy_trade_account" x-model="selectedStrategy.account" type="hidden" name="account">
@@ -1254,14 +1255,9 @@
                 </p>
             </div>
             <div class="mt-3">
-                    <form id="stop__robot__form" method="post" action="{{ url('/user/stoprobot') }}">
-                        @csrf
-                        <input type="hidden" name="tradingbot_id" value="{{ $tradingbots ? $tradingbots[0]['id'] : '' }}">
-                        <input id="robot_stopped_at" type="hidden" name="robot_stopped_at" value="">
-                        <button type="submit" class="bg-[#FB4B4E] rounded-lg py-2 px-2 w-full">
-                            <span class="text-[#FFFFFF] text-sm font-normal">Yes, stop robot</span>
-                        </button>
-                    </form>
+                <button @click="cancelRobotRequest()" class="bg-[#FB4B4E] rounded-lg py-2 px-2 w-full">
+                    <span class="text-[#FFFFFF] text-sm font-normal">Yes, stop robot</span>
+                </button>
             </div>
             <div class="mt-1">
                 <button @click="toggleCancelModal()" class="bg-transparent rounded-lg py-3 px-2 w-full">
@@ -1741,6 +1737,16 @@
         window.addEventListener('resize', adjustHistoryContainerMargin());
     }
   </script>
+
+<script>
+    function cancelRobotRequest() {
+        let cancelRefreshedTradePositionData = getTradePosition();
+        let submitTradingBot = @json($tradingbots);
+        document.getElementById('robot_stopped_at').value = cancelRefreshedTradePositionData.position;
+        document.getElementById('submit_tradingbot_id').value = submitTradingBot[0].id;
+        document.getElementById("stop__robot__form").submit();
+    }
+</script>
 
 </body>
 </html>

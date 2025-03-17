@@ -103,7 +103,11 @@ Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function()
         //robot routes
         Route::match(['get','post'],'/robot', 'UserController@robot')->name('robot'); 
          //stoprobot routes
-         Route::match(['get','post'],'/stoprobot', 'UserController@stoprobot')->name('stoprobot'); 
+        //  Route::match(['get','post'],'/stoprobot', 'UserController@stoprobot')->name('stoprobot');
+
+        Route::get('/stoprobot', [UserController::class, 'stoprobot']);
+        Route::post('/stoprobot', [UserController::class, 'stoprobot'])->name('stoprobot');
+
          //get current robots amount earned
          Route::post('/check-current-earned','UserController@getCurrentEarned');
          Route::get('/disabledisplayrobotonload','UserController@disableDisplayRobotOnLoad');

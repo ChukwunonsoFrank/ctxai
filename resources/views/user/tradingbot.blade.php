@@ -27,12 +27,12 @@
                         <div class="flex-none">{{ ucfirst($tradingbot['account_type']) }} Account</div>
                     </div>
                     <div class="flex items-center">
-                        <div class="flex-1 text-md font-bold text-[#FFFFFF]">@money($tradingbot['amount'])</div>
+                        <div class="flex-1 text-md font-bold text-[#FFFFFF]">@money(floatval($tradingbot['amount']))</div>
                         <div class="flex-none text-[#20c075] text-sm font-bold">
                             @if($tradingbot['status'] == 1)
                                 <span id="active_trade_profit"></span>
                             @else
-                                <div class="flex-none text-[#20c075] text-sm font-bold">+@money($tradingbot['display_profit'])</div>
+                                <div class="flex-none text-[#20c075] text-sm font-bold">+@money(floatval($tradingbot['display_profit']))</div>
                             @endif
                         </div>
                     </div>
@@ -80,12 +80,12 @@
                         <div class="flex-none">{{ ucfirst($tradingbot['account_type']) }} Account</div>
                     </div>
                     <div class="flex items-center">
-                        <div class="flex-1 text-md font-bold text-[#FFFFFF]">@money($tradingbot['amount'])</div>
+                        <div class="flex-1 text-md font-bold text-[#FFFFFF]">@money(floatval($tradingbot['amount']))</div>
                         <div class="flex-none text-[#20c075] text-sm font-bold">
                             @if($tradingbot['status'] == 1)
                                 <span id="active_trade_profit_2"></span>
                             @else
-                                <div class="flex-none text-[#20c075] text-sm font-bold">+@money($tradingbot['display_profit'])</div>
+                                <div class="flex-none text-[#20c075] text-sm font-bold">+@money(floatval($tradingbot['display_profit']))</div>
                             @endif
                         </div>
                     </div>

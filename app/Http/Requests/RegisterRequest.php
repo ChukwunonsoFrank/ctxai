@@ -23,7 +23,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
             
@@ -37,7 +37,7 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'An account already exists with this email. Login with your credentials.',
             'email.email' => 'Must be a valid email',
             'username.required' => 'Please input a valid username',
-            // 'username.unique' => 'Please this username has been used ',
+            'username.unique' => 'Please this username has been used ',
             'password.required' => 'Please input a valid password',
             'password.min' => 'Please your password should be 8 characters min ',
             'password_confirmation.required' => 'Please confirm password',
