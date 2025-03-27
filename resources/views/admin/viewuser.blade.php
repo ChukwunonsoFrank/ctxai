@@ -43,7 +43,7 @@
                             <div class="text-center mt-4 border-bottom-1 pb-3">
                                 <div class="row mb-4">
                                     <div class="col">
-                                        <h3 class="m-b-0">@money($details['balance'])</h3><span class="text-dark">Live Balance</span>
+                                        <h3 class="m-b-0">@money(floatval($details['balance']))</h3><span class="text-dark">Live Balance</span>
                                     </div>
                                     <div class="col">
                                         <h3 class="m-b-0">{{$details['tradingbots']}}</h3><span class="text-dark">bots</span>
@@ -69,13 +69,14 @@
                                     </li>
                                     <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link">Email</a>
                                     </li>
-                                    <li class="nav-item"><a href="#deposits" data-toggle="tab" class="nav-link">deposits</a>
+                                    <li class="nav-item"><a href="#deposits" data-toggle="tab" class="nav-link">Deposits</a>
                                     </li>
-                                    <li class="nav-item"><a href="#investments" data-toggle="tab" class="nav-link">bots</a>
+                                    <li class="nav-item"><a href="#investments" data-toggle="tab" class="nav-link">Bots</a>
                                     </li>
-                                    <li class="nav-item"><a href="#referals" data-toggle="tab" class="nav-link">Referals</a>
+                                    <li class="nav-item"><a href="#referals" data-toggle="tab" class="nav-link">Referrals</a>
                                     </li>
                                 </ul>
+                                
                                 <div class="tab-content">
                                     <div id="my-posts" class="tab-pane fade active show">
                                         <div class="my-post-content pt-3">
@@ -119,7 +120,7 @@
                                                     <tbody>
                                                         @forelse ($deposits as $deposit)
                                                         <tr>
-                                                            <td>@money($deposit['amount']) </td>
+                                                            <td>@money(floatval($deposit['amount'])) </td>
                                                             <td>
                                                                 @if ($deposit['deposit_status'] == 1)
                                                                 <span class='badge badge-success'>Approved</span>
@@ -149,13 +150,14 @@
                                                             <th>Amount</th>
                                                             <th>earned</th>
                                                             <th>status</th>
+                                                            <th>type</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @forelse ($tradingbots as $tradingbot)
                                                         <tr>
-                                                            <td>@money($tradingbot['amount']) </td>
-                                                            <td>@money($tradingbot['amount_earned']) </td>
+                                                            <td>@money(floatval($tradingbot['amount'])) </td>
+                                                            <td>@money(floatval($tradingbot['amount_earned'])) </td>
                                                             <td>
                                                                 @if ($tradingbot['status'] == 1)
                                                                 <span class='badge badge-success'>Active</span>
@@ -164,8 +166,8 @@
                                                                 @else
                                                                 <span class='badge badge-secondary'>Profit Exceeded</span>
                                                                 @endif
-
                                                             </td>
+                                                            <td>{{ $tradingbot['account_type'] }}</td>
                                                         </tr>
                                                         @empty
                                                         <div class="alert alert-danger" role="alert"> No data found</div>
@@ -184,33 +186,23 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Name</th>
-                                                            <th>status</th>
+                                                            <th>Profit</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @forelse ($refers as $refer)
                                                         <tr>
                                                             <td>{{ $refer['username'] }}</td>
-                                                            <td>
-                                                                @if ($refer['refearned'] == 1)
-                                                                <span class='badge badge-success'>Refer Earned</span>
-                                                                @else
-                                                                <span class='badge badge-danger'>Refer Not Earned</span>
-                                                                @endif
-
-                                                            </td>
+                                                            <td></td>
                                                         </tr>
                                                         @empty
                                                         <div class="alert alert-danger" role="alert"> No data found</div>
                                                         @endforelse
-
-
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

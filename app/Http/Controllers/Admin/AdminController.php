@@ -33,12 +33,11 @@ class AdminController extends Controller
             if ($data['action'] == "stoprobot") {
                 $currentbot = tradingbot::where('id', $data['tradingbotid'])->first()->toArray();
                 $currentuser = User::where('id', $currentbot['user_id'])->first()->toArray();
-
-                if ($currentbot['account_type'] == "live" & $currentbot['status'] == 1) {
+                if ($currentbot['account_type'] === "live" && $currentbot['status'] === '1') {
                     $newuserbalance = floatval($currentuser['balance']) + floatval($currentbot['amount_earned']) + floatval($currentbot['amount']);
                     $demobalance_updated = User::where('id', $currentuser['id'])->update(['balance' => strval($newuserbalance)]);
-                    $currentbot_updated = tradingbot::where('id', $data['tradingbotid'])->update(['status' => '1']);
-                } elseif ($currentbot['account_type'] == "demo" & $currentbot['status'] == 1) {
+                    $currentbot_updated = tradingbot::where('id', $data['tradingbotid'])->update(['status' => '0']);
+                } elseif ($currentbot['account_type'] === "demo" && $currentbot['status'] === '1') {
                     $newuserdemo_balance = floatval($currentuser['demo_balance']) + floatval($currentbot['amount_earned']) + floatval($currentbot['amount']);
                     $demobalance_updated = User::where('id', $currentuser['id'])->update(['demo_balance' => strval($newuserdemo_balance)]);
                     $currentbot_updated = tradingbot::where('id', $data['tradingbotid'])->update(['status' => '0']);

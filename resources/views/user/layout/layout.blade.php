@@ -334,7 +334,7 @@
 
 </head>
 
-<body id="body_component" class="bg-dashboard font-sans" x-data="{ isSubmitDepositDataButtonDisabled: false, isSubmitWithdrawalDataButtonDisabled: false, isStartTradeButtonDisabled: false, depositStep: 1, withdrawStep: 1, showDepositAmountInput: false, showWithdrawAmountInput: false, selectedAccountBoolean: false, durationTitle: '', depositPaymentMethodTitle: '', withdrawPaymentMethodTitle: '', depositPaymentMethod: '', withdrawPaymentMethod: '', currentNavbarIcon: 'dashboard', isCancelModalOpen: false, isHowToUseModalOpen: false, isDepositModalOpen: false, isWithdrawModalOpen: false, isWithdrawOTPModalOpen: false, isRobotModalOpen: false, isAccountModalOpen: false, isSupportPortalOpen: false, isActiveBotTradeModalOpen: false, isQRCodeDepositModalOpen: false, isStrategyDropdownOpen: false, isAccountDropdownOpen: false, isDurationDropdownOpen: false, isDepositPaymentMethodDropdownOpen: false, isWithdrawPaymentMethodDropdownOpen: false, selectedStrategy: { id: '', name: '', minProfitRange: '', maxProfitRange: '', totalDuration: '', minAmount: '', image: '', accumulatedDuration: 1, tradeAmount: '', account: '' }, submitWithdrawalData() { let withdrawAmount = document.getElementById('withdraw_amount').value; let withdrawPaymentMethod = document.getElementById('withdraw_payment_method').value; let withdrawPayoutAddress = document.getElementById('withdraw_payout_address').value; let withdrawOTP = document.getElementById('withdraw_otp').value; document.getElementById('withdraw__amount').value = withdrawAmount; document.getElementById('withdraw__payment__method').value = withdrawPaymentMethod; document.getElementById('withdraw__payout__address').value = withdrawPayoutAddress; document.getElementById('withdraw__otp').value = withdrawOTP; try { document.getElementById('withdraw__data__form').submit(); } catch (error) { this.isSubmitWithdrawalDataButtonDisabled = true; console.log(error); } }, submitDepositData() { let depositAmount = document.getElementById('deposit_amount').value; let paymentMethod = document.getElementById('deposit_payment_method').value; document.getElementById('deposit__amount__submit').value = depositAmount; document.getElementById('payment__method__submit').value = paymentMethod; try { document.getElementById('deposit__data__form').submit(); } catch (error) { this.isSubmitDepositDataButtonDisabled = false; console.log(error) } }, submitTradeRequest(liveBalance, demoBalance, userStatus) { let tradeAmount = document.getElementById('strategy_trade_amount').value; let minAmount = document.getElementById('strategy_min_amount').value; let tradeAccount = document.getElementById('strategy_trade_account').value; if(Number(userStatus) === 0) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('You are unable to trade at the moment. Please contact support to learn more.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(Number(tradeAmount) < Number(minAmount)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text(`Minimum amount is $${minAmount}`); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(tradeAccount === 'demo' && Number(tradeAmount) > Number(demoBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else if(tradeAccount === 'live' && Number(tradeAmount) > Number(liveBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital. Please fund your wallet to start trading'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else { document.getElementById('execute__trade__form').submit(); }}, checkInputFields(id, balance) { let amount = document.getElementById(id).value; if(!amount) { $('#error_notification').text('Please input an amount'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) < 100) { $('#error_notification').text('Minimum deposit amount is $100'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) >= 100) { this.depositStep++ } if (amount && id === 'withdraw_amount' && Number(amount) < 10) { $('#error_notification').text('Minimum withdrawal amount is $10'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) > balance) { $('#error_notification').text('Insufficient withdrawal balance.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) >= 10 && Number(amount) <= balance) { this.withdrawStep++ } }, toggleCancelModal() { this.isCancelModalOpen = !this.isCancelModalOpen }, toggleAccountModal() { this.isAccountModalOpen = !this.isAccountModalOpen }, toggleSupportPortal() { this.isSupportPortalOpen = !this.isSupportPortalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleDepositModal() { document.getElementById('deposit_amount').value = ''; this.depositStep = 1; this.depositPaymentTitle = ''; this.depositPaymentMethod = ''; this.isDepositModalOpen = !this.isDepositModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleWithdrawModal() { this.isWithdrawModalOpen = !this.isWithdrawModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleRobotModal(robotModal) { this.isDepositModalOpen = false; if (robotModal === 'robotsettings') { this.isRobotModalOpen = !this.isRobotModalOpen; } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = !this.isActiveBotTradeModalOpen; } else { this.isRobotModalOpen = !this.isRobotModalOpen; } }, toggleAccountDropdown() { this.isAccountDropdownOpen = !this.isAccountDropdownOpen }, toggleDurationDropdown() { this.isDurationDropdownOpen = !this.isDurationDropdownOpen }, toggleDepositPaymentMethodDropdown() { this.isDepositPaymentMethodDropdownOpen = !this.isDepositPaymentMethodDropdownOpen }, toggleWithdrawPaymentMethodDropdown() { this.isWithdrawPaymentMethodDropdownOpen = !this.isWithdrawPaymentMethodDropdownOpen }, toggleStrategyDropdown() { this.isStrategyDropdownOpen = !this.isStrategyDropdownOpen }, selectTradingAccount(accountBoolean) { if (accountBoolean === true) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; this.isAccountDropdownOpen = false } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; this.isAccountDropdownOpen = false } }, selectTradingAccountOnLoad(liveBalance) { if(Number(liveBalance) > 0) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; } }, selectTradingDuration(duration, title) { this.selectedStrategy.accumulatedDuration = duration; this.durationTitle = title; this.isDurationDropdownOpen = false }, selectDepositPaymentMethod(method, title) { this.depositPaymentMethod = method; this.depositPaymentMethodTitle = title; this.isDepositPaymentMethodDropdownOpen = false; this.depositStep = 3; }, selectWithdrawPaymentMethod(method, title) { this.withdrawPaymentMethod = method; this.withdrawPaymentMethodTitle = title; this.isWithdrawPaymentMethodDropdownOpen = false; this.withdrawStep = 3; }, selectStrategy(id, name, minRoi, maxRoi, totalDuration, minAmount, image) { this.selectedStrategy.id = id; this.selectedStrategy.name = name; this.selectedStrategy.minRoi = minRoi; this.selectedStrategy.maxRoi = maxRoi; this.selectedStrategy.totalDuration = totalDuration; this.selectedStrategy.minAmount = minAmount; document.getElementById('strategy_min_amount').value = minAmount; this.selectedStrategy.image = image; this.isStrategyDropdownOpen = false }, showHowToUseModalOnJustRegistered(justRegistered) { if(justRegistered === true) { this.isHowToUseModalOpen = true } }, showRobotModalOnLoad(robotModal) { if (robotModal === 'robotsettings') { this.isRobotModalOpen = true } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = true } else if (robotModal === 'disabled') { this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; } }, proceedToQRCodeModal() { this.isDepositModalOpen = false; this.isQRCodeDepositModalOpen = true }, proceedToOTPModal() { this.isWithdrawModalOpen = false; this.isWithdrawOTPModalOpen = true }, goBackDeposit() { document.getElementById('deposit__qrcode__modal').classList.add('hidden'); $('#qrcode').empty(); } }">
+<body id="body_component" class="bg-dashboard font-sans" x-data="{ isSubmitDepositDataButtonDisabled: false, isSubmitWithdrawalDataButtonDisabled: false, isStartTradeButtonDisabled: false, depositStep: 1, withdrawStep: 1, showDepositAmountInput: false, showWithdrawAmountInput: false, selectedAccountBoolean: false, durationTitle: '', depositPaymentMethodTitle: '', withdrawPaymentMethodTitle: '', depositPaymentMethod: '', withdrawPaymentMethod: '', currentNavbarIcon: 'dashboard', isCancelModalOpen: false, isStopRobotAtModalOpen: false, isHowToUseModalOpen: false, isDepositModalOpen: false, isWithdrawModalOpen: false, isWithdrawOTPModalOpen: false, isRobotModalOpen: false, isAccountModalOpen: false, isSupportPortalOpen: false, isActiveBotTradeModalOpen: false, isQRCodeDepositModalOpen: false, isStrategyDropdownOpen: false, isAccountDropdownOpen: false, isDurationDropdownOpen: false, isDepositPaymentMethodDropdownOpen: false, isWithdrawPaymentMethodDropdownOpen: false, selectedStrategy: { id: '', name: '', minProfitRange: '', maxProfitRange: '', totalDuration: '', minAmount: '', image: '', accumulatedDuration: 1, tradeAmount: '', account: '' }, submitWithdrawalData() { let withdrawAmount = document.getElementById('withdraw_amount').value; let withdrawPaymentMethod = document.getElementById('withdraw_payment_method').value; let withdrawPayoutAddress = document.getElementById('withdraw_payout_address').value; let withdrawOTP = document.getElementById('withdraw_otp').value; document.getElementById('withdraw__amount').value = withdrawAmount; document.getElementById('withdraw__payment__method').value = withdrawPaymentMethod; document.getElementById('withdraw__payout__address').value = withdrawPayoutAddress; document.getElementById('withdraw__otp').value = withdrawOTP; try { document.getElementById('withdraw__data__form').submit(); } catch (error) { this.isSubmitWithdrawalDataButtonDisabled = true; console.log(error); } }, submitDepositData() { let depositAmount = document.getElementById('deposit_amount').value; let paymentMethod = document.getElementById('deposit_payment_method').value; document.getElementById('deposit__amount__submit').value = depositAmount; document.getElementById('payment__method__submit').value = paymentMethod; try { document.getElementById('deposit__data__form').submit(); } catch (error) { this.isSubmitDepositDataButtonDisabled = false; console.log(error) } }, submitTradeRequest(liveBalance, demoBalance, userStatus) { let tradeAmount = document.getElementById('strategy_trade_amount').value; let minAmount = document.getElementById('strategy_min_amount').value; let tradeAccount = document.getElementById('strategy_trade_account').value; if(Number(userStatus) === 0) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('You are unable to trade at the moment. Please contact support to learn more.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(Number(tradeAmount) < Number(minAmount)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text(`Minimum amount is $${minAmount}`); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide(); }, 4000); } else if(tradeAccount === 'demo' && Number(tradeAmount) > Number(demoBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else if(tradeAccount === 'live' && Number(tradeAmount) > Number(liveBalance)) { this.isStartTradeButtonDisabled = false; $('#error_notification').text('Insufficient trading capital. Please fund your wallet to start trading'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } else { document.getElementById('execute__trade__form').submit(); }}, checkInputFields(id, balance) { let amount = document.getElementById(id).value; if(!amount) { $('#error_notification').text('Please input an amount'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) < 100) { $('#error_notification').text('Minimum deposit amount is $100'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'deposit_amount' && Number(amount) >= 100) { this.depositStep++ } if (amount && id === 'withdraw_amount' && Number(amount) < 10) { $('#error_notification').text('Minimum withdrawal amount is $10'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) > balance) { $('#error_notification').text('Insufficient withdrawal balance.'); $('#error_notification').show(); setInterval(function() { $('#error_notification').hide() }, 4000); } if (amount && id === 'withdraw_amount' && Number(amount) >= 10 && Number(amount) <= balance) { this.withdrawStep++ } }, toggleCancelModal() { let stoppedRobotAt = document.getElementById('robot_stopped_at').value; let timerValue = document.getElementById('countdown_timer').innerText; document.getElementById('stop_robot_at_timer').innerText = timerValue; if(Number(stoppedRobotAt) === 0) { this.isStopRobotAtModalOpen = !this.isStopRobotAtModalOpen; return; } this.isCancelModalOpen = !this.isCancelModalOpen }, toggleAccountModal() { this.isAccountModalOpen = !this.isAccountModalOpen }, toggleSupportPortal() { this.isSupportPortalOpen = !this.isSupportPortalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleDepositModal() { document.getElementById('deposit_amount').value = ''; this.depositStep = 1; this.depositPaymentTitle = ''; this.depositPaymentMethod = ''; this.isDepositModalOpen = !this.isDepositModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleWithdrawModal() { this.isWithdrawModalOpen = !this.isWithdrawModalOpen; this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; }, toggleRobotModal(robotModal) { this.isDepositModalOpen = false; if (robotModal === 'robotsettings') { this.isRobotModalOpen = !this.isRobotModalOpen; } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = !this.isActiveBotTradeModalOpen; } else { this.isRobotModalOpen = !this.isRobotModalOpen; } }, toggleAccountDropdown() { this.isAccountDropdownOpen = !this.isAccountDropdownOpen }, toggleDurationDropdown() { this.isDurationDropdownOpen = !this.isDurationDropdownOpen }, toggleDepositPaymentMethodDropdown() { this.isDepositPaymentMethodDropdownOpen = !this.isDepositPaymentMethodDropdownOpen }, toggleWithdrawPaymentMethodDropdown() { this.isWithdrawPaymentMethodDropdownOpen = !this.isWithdrawPaymentMethodDropdownOpen }, toggleStrategyDropdown() { this.isStrategyDropdownOpen = !this.isStrategyDropdownOpen }, selectTradingAccount(accountBoolean) { if (accountBoolean === true) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; this.isAccountDropdownOpen = false } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; this.isAccountDropdownOpen = false } }, selectTradingAccountOnLoad(liveBalance) { if(Number(liveBalance) > 0) { this.selectedStrategy.account = 'live'; this.selectedAccountBoolean = true; } else { this.selectedStrategy.account = 'demo'; this.selectedAccountBoolean = false; } }, selectTradingDuration(duration, title) { this.selectedStrategy.accumulatedDuration = duration; this.durationTitle = title; this.isDurationDropdownOpen = false }, selectDepositPaymentMethod(method, title) { this.depositPaymentMethod = method; this.depositPaymentMethodTitle = title; this.isDepositPaymentMethodDropdownOpen = false; this.depositStep = 3; }, selectWithdrawPaymentMethod(method, title) { this.withdrawPaymentMethod = method; this.withdrawPaymentMethodTitle = title; this.isWithdrawPaymentMethodDropdownOpen = false; this.withdrawStep = 3; }, selectStrategy(id, name, minRoi, maxRoi, totalDuration, minAmount, image) { this.selectedStrategy.id = id; this.selectedStrategy.name = name; this.selectedStrategy.minRoi = minRoi; this.selectedStrategy.maxRoi = maxRoi; this.selectedStrategy.totalDuration = totalDuration; this.selectedStrategy.minAmount = minAmount; document.getElementById('strategy_min_amount').value = minAmount; this.selectedStrategy.image = image; this.isStrategyDropdownOpen = false }, showHowToUseModalOnJustRegistered(justRegistered) { if(justRegistered === true) { this.isHowToUseModalOpen = true } }, showRobotModalOnLoad(robotModal) { if (robotModal === 'robotsettings') { this.isRobotModalOpen = true } else if (robotModal === 'activebottrade') { this.isActiveBotTradeModalOpen = true } else if (robotModal === 'disabled') { this.isRobotModalOpen = false; this.isActiveBotTradeModalOpen = false; } }, proceedToQRCodeModal() { this.isDepositModalOpen = false; this.isQRCodeDepositModalOpen = true }, proceedToOTPModal() { this.isWithdrawModalOpen = false; this.isWithdrawOTPModalOpen = true }, goBackDeposit() { document.getElementById('deposit__qrcode__modal').classList.add('hidden'); $('#qrcode').empty(); } }">
     <form id="stop__robot__form" action="{{ route('stoprobot') }}" method="POST">
         @csrf
         <input id="submit_tradingbot_id" type="hidden" name="tradingbot_id" value="">
@@ -373,7 +373,7 @@
                         @endif
                         <div class="text-center">
                             <p class="text-xs md:text-sm font-extrabold">Live account</p>
-                            <p class="text-xs md:text-sm">@money($user['balance'])</p>
+                            <p class="text-xs md:text-sm">@money(floor($user['balance'] * 100) / 100)</p>
                         </div>
                     </div>
                     <div class="relative flex-1 items-center text-[#FFFFFF] p-2 md:pl-4 rounded-lg border-2 border-[#2A2B39]">
@@ -387,7 +387,7 @@
                         @endif
                         <div class="text-center">
                             <p class="text-xs md:text-sm font-extrabold">Demo account</p>
-                            <p class="text-xs md:text-sm">@money($user['demo_balance'])</p>
+                            <p class="text-xs md:text-sm">@money(floor($user['demo_balance'] * 100) / 100)</p>
                         </div>
                     </div>
                 </div>
@@ -545,7 +545,7 @@
                 <a @click="isDepositModalOpen = false; depositStep = 1;" style="color: #ffffff;">&#x2715;</a>
             </div>
         </div>
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 pb-8 h-[70vh] overflow-scroll">
             <div class="mt-6">
                 <label for="deposit_amount" class="text-[#FFFFFF] text-xs block mb-3 font-normal">Deposit
                     Amount</label>
@@ -558,49 +558,6 @@
                         </div>
                     </div>
             </div>
-
-            {{-- <template x-if="depositStep === 2">
-                <div class="mt-6">
-                    <label for="deposit_payment_method" class="text-[#FFFFFF] text-xs block mb-3 font-normal">Payment Method</label>
-                    <input x-model="depositPaymentMethod" type="hidden" id="deposit_payment_method">
-                    <div class="flex-1 md:flex-none relative">
-                        <div @click="toggleDepositPaymentMethodDropdown()" class="flex items-center space-x-3 border-2 border-[#2A2B39] px-4 py-2 bg-[#1F202B] rounded-md text-[#FFFFFF]">
-                            <div class="flex-1">
-                                <template x-if="depositPaymentMethodTitle === 'Bitcoin'">
-                                    <img class="inline" src="{{ asset('userassets/icons/btc-icon.svg') }}" alt="" srcset=""> 
-                                </template>
-                                <template x-if="depositPaymentMethodTitle === 'Ethereum'">
-                                    <img class="inline" src="{{ asset('userassets/icons/eth-icon.svg') }}" alt="" srcset=""> 
-                                </template>
-                                <template x-if="depositPaymentMethodTitle === 'USDT'">
-                                    <img class="inline" src="{{ asset('userassets/icons/usdt-icon.svg') }}" alt="" srcset=""> 
-                                </template>
-                                <p class="inline" x-text="depositPaymentMethodTitle"></p>
-                            </div>
-                            <div class="flex-none justify-self-end">
-                                <img class="inline" src="{{ asset('userassets/icons/chevron-down-lg.svg') }}" alt="">
-                            </div>
-                        </div>
-                        <div x-cloak x-show="isDepositPaymentMethodDropdownOpen" @click.outside="isDepositPaymentMethodDropdownOpen = false" class="bg-[#1F202B] absolute border-2 rounded-lg border-[#2A2B39] w-full h-28 overflow-scroll z-10 p-2 mt-1">
-                            @foreach ($wallets as $wallet)
-                                <div x-init="selectDepositPaymentMethod('{{ $wallets[0]['coin_code'] }}', '{{ $wallets[0]['coin_name'] }}')"></div>
-                                <div @click="selectDepositPaymentMethod('{{ $wallet['coin_code'] }}', '{{ $wallet['coin_name'] }}')" class="hover:bg-[#38394f] flex items-center space-x-3 px-4 py-2 rounded-md text-[#FFFFFF]">
-                                    <div class="flex-1">
-                                        @if ($wallet['coin_code'] === 'BTC')
-                                            <img class="inline" src="{{ asset('userassets/icons/btc-icon.svg') }}" alt="" srcset=""> 
-                                        @elseif ($wallet['coin_code'] === 'ETH')
-                                            <img class="inline" src="{{ asset('userassets/icons/eth-icon.svg') }}" alt="" srcset=""> 
-                                        @elseif ($wallet['coin_code'] === 'USDT')
-                                            <img class="inline" src="{{ asset('userassets/icons/usdt-icon.svg') }}" alt="" srcset=""> 
-                                        @endif
-                                        <p class="inline"> {{ $wallet['coin_name'] }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </template> --}}
 
             <template x-if="depositStep >= 2">
                 <div class="mt-6">
@@ -677,7 +634,7 @@
             <h1 class="text-[#FFFFFF] text-xl font-bold">Deposit to Live Account</h1>
         </div>
         
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 pb-8 h-[80vh] overflow-scroll">
             <div class="text-center mt-4 md:mt-24 lg:mt-4">
                 <p class="text-[#FFFFFF] text-xs my-6">Scan QR code or copy wallet address below</p>
             </div>
@@ -735,12 +692,12 @@
                 <a @click="isWithdrawModalOpen = false; withdrawStep = 1;" style="color: #ffffff;">&#x2715;</a>
             </div>
         </div>
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 pb-8 h-[80vh] overflow-scroll">
             <div class="flex mt-6">
                 <div class="flex-1 text-sm text-[#FFFFFF]">
                     Balance
                 </div>
-                <div class="flex-1 font-bold text-[#FFFFFF] text-end">@money($user['balance'])</div>
+                <div class="flex-1 font-bold text-[#FFFFFF] text-end">@money(floor($user['balance'] * 100) / 100)</div>
             </div>
             <div class="mt-6">
                 <label for="" class="text-[#FFFFFF] text-xs block mb-3 font-normal">
@@ -986,7 +943,7 @@
                     <div x-cloak x-show="isAccountDropdownOpen" @click.outside="isAccountDropdownOpen = false" class="bg-[#1F202B] absolute border-2 rounded-lg border-[#2A2B39] w-full h-24 overflow-scroll z-10 p-2 mt-1">
                         <div x-init="selectTradingAccountOnLoad('{{ auth()->user()->balance }}')" @click="selectTradingAccount(false)" class="hover:bg-[#38394f] flex items-center space-x-3 px-4 py-2 rounded-md text-[#FFFFFF]">
                             <div class="flex-1">
-                                <p class="text-sm">Demo Account - @money($user['demo_balance'])</p>
+                                <p class="text-sm">Demo Account - @money(floor($user['demo_balance'] * 100) / 100)</p>
                             </div>
                             <div class="flex-none w-8 text-end">
                                 <template x-if="selectedAccountBoolean === false">
@@ -996,7 +953,7 @@
                         </div>
                         <div @click="selectTradingAccount(true)" class="hover:bg-[#38394f] flex items-center space-x-3 px-4 py-2 rounded-md text-[#FFFFFF]">
                             <div class="flex-1">
-                                <p class="text-sm">Live Account - @money($user['balance'])</p>
+                                <p class="text-sm">Live Account - @money(floor($user['balance'] * 100) / 100)</p>
                             </div>
                             <div class="flex-none w-8 text-end">
                                 <template x-if="selectedAccountBoolean === true">
@@ -1099,7 +1056,7 @@
                 </div>
                 <div class="container mx-auto px-4 mt-2 md:mt-72 lg:mt-4">
                     <div class="text-center">
-                        <button id="submit_trade_button" :disabled="isStartTradeButtonDisabled" @click="isStartTradeButtonDisabled = true; submitTradeRequest('{{ auth()->user()->balance }}', '{{ auth()->user()->demo_balance }}', '{{ auth()->user()->status }}')"
+                        <button id="submit_trade_button" :disabled="isStartTradeButtonDisabled" @click="isStartTradeButtonDisabled = true; submitTradeRequest('{{ $user['balance'] }}', '{{ $user['demo_balance'] }}', '{{ $user['status'] }}')"
                             class="rounded-lg py-3 px-2 w-full" :class="isStartTradeButtonDisabled ? 'bg-[#2c917e] cursor-not-allowed' : 'bg-[#40ffdd] cursor-pointer'">
                             <span class="text-[#000000] text-sm font-bold">Start Trade</span>
                         </button>
@@ -1203,7 +1160,7 @@
                     </div>
                     <div class="mt-2 flex justify-center items-center px-4">
                         <a id="viewassettradebtn" href="">
-                            <button type="submit" class="bg-[#40ffdd] rounded-lg py-2 px-4">
+                            <button class="bg-[#40ffdd] rounded-lg py-2 px-4">
                                 <img class="inline" src="{{ asset('userassets/icons/trade-chart-icon.svg') }}" /><span class="text-[#000000] text-xs font-bold"> Show the trade on the chart</span>
                             </button>
                         </a>
@@ -1262,6 +1219,21 @@
             <div class="mt-1">
                 <button @click="toggleCancelModal()" class="bg-transparent rounded-lg py-3 px-2 w-full">
                     <span class="text-[#FFFFFF] text-sm font-bold">Cancel</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div x-cloak x-show="isStopRobotAtModalOpen" class="w-full h-screen flex justify-center items-center bg-[#1e293a] bg-opacity-50 fixed top-0 z-50">
+        <div class="w-80 h-auto bg-[#38394b] p-6 rounded-md">
+            <div class="text-center">
+                <p class="text-sm text-[#FFFFFF]">
+                    You can stop the robot in <span id="stop_robot_at_timer" class="font-bold"> minutes</span>
+                </p>
+            </div>
+            <div class="mt-3">
+                <button @click="isStopRobotAtModalOpen = !isStopRobotAtModalOpen" class="bg-[#FB4B4E] rounded-lg py-2 px-2 w-full">
+                    <span class="text-[#FFFFFF] text-sm font-bold">OK</span>
                 </button>
             </div>
         </div>
@@ -1351,7 +1323,7 @@
                 <div class="flex-1 text-sm text-[#FFFFFF]">
                     Balance
                 </div>
-                <div class="flex-1 font-bold text-[#FFFFFF] text-end">@money($user['balance'])</div>
+                <div class="flex-1 font-bold text-[#FFFFFF] text-end">@money(floor($user['balance'] * 100) / 100)</div>
             </div>
 
             <div class="my-6">
@@ -1392,6 +1364,18 @@
                             <img src="{{ asset('userassets/icons/robot-icon-mobile.svg') }}" alt="">
                         </div>
                         <div class="flex-1"><p class="text-[#FFFFFF] text-sm">Trading history</p></div>
+                        <div class="flex-none"><img src="{{ asset('userassets/icons/chevron-right-account.svg') }}" alt=""></div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="mt-1 mb-1">
+                <a href="{{ route('referrals.index') }}">
+                    <div class="flex items-center space-x-3 border-2 border-[#2A2B39] rounded-md p-3 bg-[#1F202B]">
+                        <div class="flex-none">
+                            <img src="{{ asset('userassets/icons/referral.svg') }}" alt="">
+                        </div>
+                        <div class="flex-1"><p class="text-[#FFFFFF] text-sm">Referrals</p></div>
                         <div class="flex-none"><img src="{{ asset('userassets/icons/chevron-right-account.svg') }}" alt=""></div>
                     </div>
                 </a>

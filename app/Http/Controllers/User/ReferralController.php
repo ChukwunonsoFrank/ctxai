@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Mail\WithdrawMail;
-use App\Models\User;
-use App\Models\withdraw;
-use App\Models\Coins;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-
-use App\Mail\Sendotp;
+use App\Models\User;
+use App\Models\Coins;
 use App\Models\plans;
 use App\Models\Trade;
+use App\Models\deposit;
 use App\Models\tradingbot;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class WithdrawController extends Controller
+
+class ReferralController extends Controller
 {
     public function getUserDetails()
     {
@@ -30,7 +26,7 @@ class WithdrawController extends Controller
             ->select('plans.*', 'tradingbots.*')->orderBy('tradingbots.id', 'desc')
             ->where([
                 'tradingbots.user_id' => Auth::User()->id,
-                'tradingbots.status' => '1',
+                'tradingbots.status' => 1,
             ])
             ->get()->toArray();
 
@@ -54,7 +50,7 @@ class WithdrawController extends Controller
 
                 $botTrade = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
 
-                if($botTrade[0]['stopped_robot_at_position']) {
+                if ($botTrade[0]['stopped_robot_at_position']) {
                     for ($i = 0; $i < $botTrade[0]['stopped_robot_at_position']; $i++) {
                         $decodedTrades = json_decode($botTrade[0]['trades']);
                         $profit = $decodedTrades[$i]->profit;
@@ -62,7 +58,7 @@ class WithdrawController extends Controller
                     }
                 }
 
-                if(is_null($botTrade[0]['stopped_robot_at_position'])) {
+                if (is_null($botTrade[0]['stopped_robot_at_position'])) {
                     $decodedTrades = json_decode($botTrade[0]['trades']);
                     for ($i = 0; $i < count($decodedTrades); $i++) {
                         $timerEndsAt = $decodedTrades[$i]->timer_ends_at;
@@ -122,7 +118,7 @@ class WithdrawController extends Controller
 
                 $botTrade = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
 
-                if($botTrade[0]['stopped_robot_at_position']) {
+                if ($botTrade[0]['stopped_robot_at_position']) {
                     for ($i = 0; $i < $botTrade[0]['stopped_robot_at_position']; $i++) {
                         $decodedTrades = json_decode($botTrade[0]['trades']);
                         $profit = $decodedTrades[$i]->profit;
@@ -130,7 +126,7 @@ class WithdrawController extends Controller
                     }
                 }
 
-                if(is_null($botTrade[0]['stopped_robot_at_position'])) {
+                if (is_null($botTrade[0]['stopped_robot_at_position'])) {
                     $decodedTrades = json_decode($botTrade[0]['trades']);
                     for ($i = 0; $i < count($decodedTrades); $i++) {
                         $timerEndsAt = $decodedTrades[$i]->timer_ends_at;
@@ -194,14 +190,6 @@ class WithdrawController extends Controller
         $user = User::where('id', Auth::User()->id)->first()->toArray();
 
         return compact('user', 'wallets', 'plans');
-    }
-
-    public function calculateCompanyCommission($profit)
-    {
-        $amountEarned = floatval($profit);
-        $roundedAmountEarned = round($amountEarned, 2);
-        $onePercent = 0.01 * $roundedAmountEarned;
-        return round(floatval($onePercent), 2);
     }
 
     public function getTradingAndSelectedAssetData()
@@ -677,10 +665,18 @@ class WithdrawController extends Controller
         ];
     }
 
+    public function calculateCompanyCommission($profit)
+    {
+        $amountEarned = floatval($profit);
+        $roundedAmountEarned = round($amountEarned, 2);
+        $onePercent = 0.01 * $roundedAmountEarned;
+        return round(floatval($onePercent), 2);
+    }
+
     public function fetchExactTradeFromCurrentBotTrade()
     {
         $currentBotTrade = $this->fetchCurrentBotTrade();
-        if(empty($currentBotTrade)) {
+        if (empty($currentBotTrade)) {
             return [];
         }
         for ($i = 0; $i < count($currentBotTrade['trades']); $i++) {
@@ -696,45 +692,12 @@ class WithdrawController extends Controller
         }
     }
 
-    public function sendwithdrawotp(Request $request)
+    public function index()
     {
-        $data = $request->all();
-        $permitted_chars = '0123456789';
-        $remember_token = substr(str_shuffle($permitted_chars), 0, 5);
-        $userUpdated = User::where('id', Auth::User()->id)->update(['remember_token' => $remember_token]);
-
-        if ($userUpdated) {
-            $user = User::where('id', Auth::User()->id)->first()->toArray();
-
-            //email admin
-            $mailData = [
-                'title' => 'Verification Code',
-                'body' => '
-                <div style="text-align: center; margin-bottom: 8px;">
-                    <h1 style="color: #19282b; font-size: 20px; line-height: 28.8px;">Verification Code</h1>
-                </div>
-                    <p>Your verification code is</p>
-                    <p style="color: #19282b; font-size: 20px; line-height: 28.8px;"><b>' . $remember_token . '</b></p>
-                    </br>
-                    ',
-                'username' => $user['username']
-            ];
-
-            Mail::to($user['email'])->send(new Sendotp($mailData));
-            return "true";
-        } else {
-            return "false";
-        }
-    }
-
-    public function withdraw(Request $request)
-    {
-        if (Session::get('has_robot_modal_displayed') && empty(Session::get('redirect_to_active_bot_trade'))) {
-            Session::put('display_robot_modal', 'disabled');
-        }
-        
-        $data = $request->all();
+        $details = $this->getUserDetails();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
+        $plans = plans::query()->orderBy('order', 'asc')->get()->toArray();
+        $user = User::where('id', Auth::User()->id)->first()->toArray();
         $tradingbots = tradingbot::join('plans', 'tradingbots.strategy_id', '=', 'plans.id')
             ->select('plans.*', 'tradingbots.*')->orderBy('tradingbots.id', 'desc')
             ->where([
@@ -743,73 +706,55 @@ class WithdrawController extends Controller
             ])
             ->get()->toArray();
 
-        //page session
-        $withdraws = withdraw::where('user_id', Auth::User()->id)->orderBy('id', 'desc')->get()->toArray();
-        $user = User::where('id', Auth::User()->id)->first()->toArray();
-        $tradeEntry = $this->fetchCurrentBotTrade();
+        $firstLevelDownlines = [];
+        $secondLevelDownlines = [];
+        $thirdLevelDownlines = [];
 
+        $firstLevelDownlines = User::where('referral_code', $user['refcode'])->get();
 
-        if ($request->isMethod('POST')) {
-            $withdrawdetails = [
-                'user_id' => Auth::User()->id,
-                'gateway' => $data['walletname'],
-                'amount' => $data['amount'],
-                'userwallet_id' => $data['walletaddress'],
-                'withdraw_status' => '0'
-            ];
+        if ($firstLevelDownlines) {
+            $firstLevelDownlines = $firstLevelDownlines->pluck('username')->toArray();
+        }
 
-            $useractive = User::where('id', Auth::User()->id)->where('status', '1')->exists();
+        foreach ($firstLevelDownlines as $fld) {
+            $fldUserRefCode = User::where('username', $fld)->pluck('refcode');
+            $firstLevelDownlinesDownline = User::where('referral_code', $fldUserRefCode)->get();
 
-            if ($useractive) {
-                if ($user['balance'] >= $data['amount']) {
-                    $userotp = User::where('id', Auth::User()->id)->where('remember_token', $data['withdrawotp'])->exists();
-
-                    if ($userotp) {
-                        $withdrawn = withdraw::create($withdrawdetails);
-
-                        $newbalance = floatval($user['balance']) - floatval($data['amount']);
-
-                        $updated = User::where('id', Auth::User()->id)->update(['balance' => strval($newbalance)]);
-
-                        if ($updated) {
-
-                            //email withdraw user
-                            $mailData = [
-                                'title' => 'Withdrawal Request',
-                                'body' => '<p>Your Withdrawal of $' . $data['amount'] . ' to the ' . $data['walletname'] . ' wallet  <strong>' . $data['walletaddress'] . '</strong> has been recieved and will be processed shortly</p>
-                                ',
-                                'username' => Auth::User()->username
-                            ];
-                            Mail::to($user['email'])->send(new WithdrawMail($mailData));
-
-                            //email withdraw admin
-                            $mailData = [
-                                'title' => 'New Withdrawal Request',
-                                'body' => '<p>' . Auth::User()->username . 'Just made a Withdrawal of $' . $data['amount'] . ' to the ' . $data['walletname'] . ' wallet  <strong>' . $data['walletaddress'] . '</strong> has been made and needs approval</p>
-                                ',
-                                'username' => "Admin"
-                            ];
-                            Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
-                            session()->flash('success_message', 'Your withdrawal was successful and will be processed shortly.');
-                            return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('withdraws', 'user', 'tradingbots'))->with(compact('tradeEntry'));
-                        } else {
-                            session()->flash('error_message', 'Error occured');
-                            return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('withdraws', 'user', 'tradingbots'))->with(compact('tradeEntry'));
-                        }
-                    } else {
-                        session()->flash('error_message', 'Invalid OTP , Please try again');
-                        return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('withdraws', 'user', 'tradingbots'))->with(compact('tradeEntry'));
-                    }
-                } else {
-                    session()->flash('error_message', 'Your do not have enough funds in wallet!');
-                    return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('withdraws', 'user', 'tradingbots'))->with(compact('tradeEntry'));
-                }
-            } else {
-                session()->flash('error_message', 'Unable to Withdraw , Please contact support.');
-                return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('tradeEntry'));
+            if ($firstLevelDownlinesDownline) {
+                $secondLevelDownlines[] = $firstLevelDownlinesDownline->pluck('username')->toArray();
             }
         }
 
-        return view('user.withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('withdraws', 'user', 'tradingbots'))->with($this->getUserDetails())->with(compact('tradeEntry'));
+        $secondLevelDownlines = array_merge(...$secondLevelDownlines);
+
+        foreach ($secondLevelDownlines as $sld) {
+            $sldUserRefCode = User::where('username', $sld)->pluck('refcode');
+            $secondLevelDownlinesDownline = User::where('referral_code', $sldUserRefCode);
+
+            if ($secondLevelDownlinesDownline) {
+                $thirdLevelDownlines[] = $secondLevelDownlinesDownline->pluck('username')->toArray();
+            }
+        }
+
+        $thirdLevelDownlines = array_merge(...$thirdLevelDownlines);
+
+        $wallets = Coins::query()->get()->toArray();
+
+        $totalCommissionEarnings = deposit::where('user_id', auth()->user()->id)->where('gateway', 'ReferralBonus')->get()->sum('amount');
+
+        if (Session::get('has_robot_modal_displayed') && empty(Session::get('redirect_to_active_bot_trade'))) {
+            Session::put('display_robot_modal', 'disabled');
+        }
+
+        $tradeEntry = $this->fetchCurrentBotTrade();
+
+        return view('user.referral')
+            ->with(compact('firstLevelDownlines', 'secondLevelDownlines', 'thirdLevelDownlines', 'totalCommissionEarnings'))
+            ->with([
+                'trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'],
+                'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']
+            ])
+            ->with(compact('user', 'wallets', 'tradingbots', 'plans'))
+            ->with(compact('tradeEntry'));
     }
 }

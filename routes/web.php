@@ -123,6 +123,9 @@ Route::prefix('/user')->namespace('App\Http\Controllers\User')->group(function()
         Route::get('/deposits', 'DepositController@deposits')->name('deposits.view');
         Route::post('/getwallet', 'DepositController@getwallet')->name('deposit.getwallet');
 
+        // referral route
+        Route::get('/referrals', 'ReferralController@index')->name('referrals.index');
+
         //withdraw routes
         // Route::match(['get','post'],'/withdraw', 'UserController@withdraw')->name('withdraw.view'); 
 

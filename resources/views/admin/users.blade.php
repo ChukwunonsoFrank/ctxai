@@ -61,8 +61,8 @@
                                                     
                                                 </td>
                                                 <td>{{ $user['email'] }}</td>
-                                                <td> @money($user['balance'])</td>
-                                                <td> @money($user['demo_balance'])</td>
+                                                <td> @money(floatval($user['balance']))</td>
+                                                <td> @money(floatval($user['demo_balance']))</td>
                                                 <td>
                                                 @if ($user['status'] == 1)
                                                     <div class="badge badge-success">Active</div>

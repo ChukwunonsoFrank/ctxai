@@ -12,13 +12,10 @@ use Carbon\Carbon;
 //models
 use App\Models\User;
 use App\Models\Coins;
-use App\Models\deposit;
 use App\Models\plans;
 use App\Models\Trade;
 use App\Models\tradingbot;
-use App\Models\withdraw;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -80,7 +77,33 @@ class UserController extends Controller
                 }
 
                 if ($currentDateTime->gt($duration_end)) {
-                    $trade_updated = Trade::where('bot_id', $tradingbot_id)->update(['stopped_robot_at_position' => 287]);
+                    if ($trading_type === 'demo') {
+                        $tradeExpired = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
+                        $tradeAmountEarned = $tradeExpired[0]['total_amount_earned'];
+                        $companyCommission = 0.01 * floatval($tradeAmountEarned);
+                        $finalAmountEarned = floatval($tradeAmountEarned) - $companyCommission;
+                        $demoBalanceExpired = floatval(auth()->user()->demo_balance) + floatval($amount) + $finalAmountEarned;
+    
+                        DB::transaction(function () use ($tradingbot_id, $finalAmountEarned, $tradeExpired, $demoBalanceExpired) {
+                            tradingbot::where('id', $tradingbot_id)->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            User::where('id', auth()->user()->id)->update(['demo_balance' => strval($demoBalanceExpired)]);
+                        });
+                    }
+
+                    if ($trading_type === 'live') {
+                        $tradeExpired = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
+                        $tradeAmountEarned = $tradeExpired[0]['total_amount_earned'];
+                        $companyCommission = 0.01 * floatval($tradeAmountEarned);
+                        $finalAmountEarned = floatval($tradeAmountEarned) - $companyCommission;
+                        $liveBalanceExpired = floatval(auth()->user()->balance) + floatval($amount) + $finalAmountEarned;
+    
+                        DB::transaction(function () use ($tradingbot_id, $finalAmountEarned, $tradeExpired, $liveBalanceExpired) {
+                            tradingbot::where('id', $tradingbot_id)->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            User::where('id', auth()->user()->id)->update(['balance' => strval($liveBalanceExpired)]);
+                        });
+                    }
                 } else {
                     $max_amount_earned = ($max_roi / 100) * floatval($amount);
                     $tradingbot_updated = tradingbot::where('id', $tradingbot_id)->update(['amount_earned' => strval($amount_earned)]);
@@ -116,8 +139,33 @@ class UserController extends Controller
                 }
 
                 if ($currentDateTime->gt($duration_end)) {
-                    $companyCommission = $this->calculateCompanyCommission($amount_earned);
-                    $trade_updated = Trade::where('bot_id', $tradingbot_id)->update(['stopped_robot_at_position' => 287]);
+                    if ($trading_type === 'demo') {
+                        $tradeExpired = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
+                        $tradeAmountEarned = $tradeExpired[0]['total_amount_earned'];
+                        $companyCommission = 0.01 * floatval($tradeAmountEarned);
+                        $finalAmountEarned = floatval($tradeAmountEarned) - $companyCommission;
+                        $demoBalanceExpired = floatval(auth()->user()->demo_balance) + floatval($amount) + $finalAmountEarned;
+    
+                        DB::transaction(function () use ($tradingbot_id, $finalAmountEarned, $tradeExpired, $demoBalanceExpired) {
+                            tradingbot::where('id', $tradingbot_id)->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            User::where('id', auth()->user()->id)->update(['demo_balance' => strval($demoBalanceExpired)]);
+                        });
+                    }
+
+                    if ($trading_type === 'live') {
+                        $tradeExpired = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
+                        $tradeAmountEarned = $tradeExpired[0]['total_amount_earned'];
+                        $companyCommission = 0.01 * floatval($tradeAmountEarned);
+                        $finalAmountEarned = floatval($tradeAmountEarned) - $companyCommission;
+                        $liveBalanceExpired = floatval(auth()->user()->balance) + floatval($amount) + $finalAmountEarned;
+    
+                        DB::transaction(function () use ($tradingbot_id, $finalAmountEarned, $tradeExpired, $liveBalanceExpired) {
+                            tradingbot::where('id', $tradingbot_id)->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            User::where('id', auth()->user()->id)->update(['balance' => strval($liveBalanceExpired)]);
+                        });
+                    }
                 } else {
                     //get max roi amount 
                     $max_amount_earned = ($max_roi / 100) * floatval($amount);
@@ -1115,7 +1163,7 @@ class UserController extends Controller
         }
     }
 
-    public function selectaccount($accounttype = null)
+    public function selectAccount($accounttype = null)
     {
         Session::put('account_type', $accounttype);
         return Redirect::back();
@@ -1218,9 +1266,6 @@ class UserController extends Controller
 
     public function robot(Request $request)
     {
-        $plans = plans::query()->orderBy('order', 'asc')->get()->toArray();
-
-        $this->getUserDetails();
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
 
         $tradeEntry = $this->fetchCurrentBotTrade();
@@ -1348,11 +1393,9 @@ class UserController extends Controller
             session()->flash('error_message', 'Network error! Please try again.');
             return redirect()->back();
         }
-
-        Log::info($userTradingBotId);
-        Log::info($robotStoppedAt);
-
+        
         $this->getUserDetails();
+
         $trading_and_selected_asset_data = $this->getTradingAndSelectedAssetData();
 
         $tradeEntry = $this->fetchCurrentBotTrade();
@@ -1362,15 +1405,17 @@ class UserController extends Controller
             $companyCommission = $this->calculateCompanyCommission($tradingbot['amount_earned']);
             if ($tradingbot['account_type'] === "live" & $tradingbot['status'] === '1') {
                 try {
-                    $newuserbalance = floatval(Auth::User()->balance) + round(floatval($tradingbot['amount_earned']), 2)  + floatval($tradingbot['amount']) - floatval($companyCommission);
-                    DB::beginTransaction();
-                    $demobalance_updated = User::where('id', Auth::User()->id)->update(['balance' => strval($newuserbalance)]);
-                    $tradingbot_updated = tradingbot::where('id', intval($userTradingBotId))->update(['status' => '0']);
-                    $trade_updated = Trade::where('bot_id', intval($userTradingBotId))->update(['stopped_robot_at_position' => intval($robotStoppedAt)]);
-                    DB::commit();
+                    $newuserbalance = floatval(auth()->user()->balance) + round(floatval($tradingbot['amount_earned']), 2)  + floatval($tradingbot['amount']) - floatval($companyCommission);
+                    DB::transaction(function () use ($newuserbalance, $userTradingBotId, $robotStoppedAt) {
+                        tradingbot::where('id', intval($userTradingBotId))->update(['status' => '0']);
+                        Trade::where('bot_id', intval($userTradingBotId))->update(['stopped_robot_at_position' => intval($robotStoppedAt)]);
+                        $userRecord = User::where('id', auth()->user()->id)->lockForUpdate()->first();
+                        if ($userRecord) {
+                            $userRecord->balance = strval($newuserbalance);
+                            $userRecord->save();
+                        }
+                    });
                 } catch (\Exception $e) {
-                    DB::rollBack();
-
                     session()->flash('error_message', 'Network error! Please try again.');
 
                     if (Session::get('has_robot_modal_displayed')) {
@@ -1448,17 +1493,17 @@ class UserController extends Controller
                 }
             } elseif ($tradingbot['account_type'] === "demo" & $tradingbot['status'] === '1') {
                 try {
-                    $newuserdemo_balance = floatval(Auth::User()->demo_balance) + round(floatval($tradingbot['amount_earned']), 2) + floatval($tradingbot['amount']) - floatval($companyCommission);
-                    DB::beginTransaction();
-                    $demobalance_updated = User::where('id', Auth::User()->id)->update(['demo_balance' => strval($newuserdemo_balance)]);
-                    $tradingbot_updated = tradingbot::where('id', intval($userTradingBotId))->update(['status' => 0]);
-                    $trade_updated = Trade::where('bot_id', intval($userTradingBotId))->update(['stopped_robot_at_position' => intval($robotStoppedAt)]);
-                    DB::commit();
+                    $newuserdemo_balance = floatval(auth()->user()->demo_balance) + round(floatval($tradingbot['amount_earned']), 2) + floatval($tradingbot['amount']) - floatval($companyCommission);
+                    DB::transaction(function () use ($newuserdemo_balance, $userTradingBotId, $robotStoppedAt) {
+                        tradingbot::where('id', intval($userTradingBotId))->update(['status' => 0]);
+                        Trade::where('bot_id', intval($userTradingBotId))->update(['stopped_robot_at_position' => intval($robotStoppedAt)]);
+                        $userRecord = User::where('id', auth()->user()->id)->lockForUpdate()->first();
+                        if ($userRecord) {
+                            $userRecord->demo_balance = strval($newuserdemo_balance);
+                            $userRecord->save();
+                        }
+                    });
                 } catch (\Exception $e) {
-                    DB::rollBack();
-
-                    $this->getUserDetails();
-
                     session()->flash('error_message', 'Network error! Please try again.');
 
                     if (Session::get('has_robot_modal_displayed')) {
@@ -1544,7 +1589,6 @@ class UserController extends Controller
         Session::put('active_robot_modal', 'robotsettings');
         session()->flash('success_message', 'Robot has stopped trading!');
 
-        $tradingbots = tradingbot::where('user_id', Auth::User()->id)->orderBy('id', 'desc')->get()->toArray();
         $tradingbots = tradingbot::join('plans', 'tradingbots.strategy_id', '=', 'plans.id')
             ->select('plans.*', 'tradingbots.*')->orderBy('tradingbots.id', 'desc')
             ->where([
@@ -1662,7 +1706,6 @@ class UserController extends Controller
 
     public function tradingbot(Request $request)
     {
-        $this->getUserDetails();
         $tradeEntry = $this->fetchCurrentBotTrade();
         if (Session::get('has_robot_modal_displayed')) {
             Session::put('display_robot_modal', 'disabled');

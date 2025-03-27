@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 
 class MatureTrades implements ShouldQueue
 {
@@ -43,19 +44,23 @@ class MatureTrades implements ShouldQueue
                     $tradeAmountEarned = $tradeExpired[0]['total_amount_earned'];
                     $companyCommission = 0.01 * floatval($tradeAmountEarned);
                     $finalAmountEarned = floatval($tradeAmountEarned) - $companyCommission;
-    
-                    // update amount earned in the trading bot
-                    tradingbot::where('id', $bot['id'])->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
-                    Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
-    
+                    
                     if($bot['account_type'] == 'demo') {
-                        $demoBalanceExpired = floatval($user['demo_balance']) + floatval($bot['amount']) + $finalAmountEarned;
-                        User::where('id', $user['id'])->update(['demo_balance' => strval($demoBalanceExpired)]);
+                        DB::transaction(function () use ($bot, $finalAmountEarned, $tradeExpired, $user) {
+                            tradingbot::where('id', $bot['id'])->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            $demoBalanceExpired = floatval($user['demo_balance']) + floatval($bot['amount']) + $finalAmountEarned;
+                            User::where('id', $user['id'])->update(['demo_balance' => strval($demoBalanceExpired)]);
+                        });
                     }
                     
                     if($bot['account_type'] == 'live') {
-                        $liveBalanceExpired = floatval($user['balance']) + floatval($bot['amount']) + $finalAmountEarned;
-                        User::where('id', $user['id'])->update(['balance' => strval($liveBalanceExpired)]);
+                        DB::transaction(function () use ($bot, $finalAmountEarned, $tradeExpired, $user) {
+                            tradingbot::where('id', $bot['id'])->update(['amount_earned' => strval($finalAmountEarned), 'status' => '0']);
+                            Trade::where('id', $tradeExpired[0]['id'])->update(['stopped_robot_at_position' => 287]);
+                            $liveBalanceExpired = floatval($user['balance']) + floatval($bot['amount']) + $finalAmountEarned;
+                            User::where('id', $user['id'])->update(['balance' => strval($liveBalanceExpired)]);
+                        });
                     }
                 }
 

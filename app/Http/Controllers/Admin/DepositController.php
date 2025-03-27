@@ -5,94 +5,264 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\deposit;
-use App\Models\investments;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 use App\Mail\DepositapprovalMail;
 
 class DepositController extends Controller
 {
-    //
-    //
-    public function deposit(Request $request){
-        
+    public function deposit(Request $request)
+    {
         $data = $request->all();
+        $level = 0;
+        $commissionPercentage = 0;
+        $topUpline = "";
+        $midUpline = "";
+        $lastUpline = "";
 
-        if($request->isMethod('POST')){
-            //arranging data
-            $refUser = '';
+        if ($request->isMethod('POST')) {
+            $action = $data['action'];
+            $userId = $data['user_id'];
+            $depositAmount = $data['depositamount'];
+            $depositId = $data['depositid'];
 
-            $currentuser = User::where('id',$data['user_id'])->first()->toArray();
-
-            $referExists = User::where('refcode',$currentuser['referral_code'])->exists();
-            if($referExists){
-                $refuser = User::where('refcode',$currentuser['referral_code'])->first()->toArray();
+            if ($action !== "approve" && $action !== "decline") {
+                return redirect()->back()->with('deposit_message', 'Invalid request action: ' . $action);
             }
-            //if approved is clicked
-            if($data['action'] == "approve"){
-                //step 1 update deposit status to 1
-                $depositUpdated = deposit::where('id',$data['depositid'])->update(['deposit_status'=> '1']);
+    
+            if (empty($userId) || $userId === "") {
+                return redirect()->back()->with('deposit_message', 'Empty request userId');
+            }
+    
+            if (empty($depositAmount) || $depositAmount === "") {
+                return redirect()->back()->with('deposit_message', 'Empty request depositAmount');
+            }
+    
+            if (empty($depositAmount) || $depositAmount === "") {
+                return redirect()->back()->with('deposit_message', 'Empty request depositAmount');
+            }
+    
+            if (empty($depositId) || $depositId === "") {
+                return redirect()->back()->with('deposit_message', 'Empty request depositId');
+            }
 
+            $currentuser = User::where('id', intval($userId))->first();
 
-                //update user balance
-                $currentuser_balance = floatval($currentuser['balance']) + floatval($data['depositamount']);
-                $userUpdated = User::where('id',$data['user_id'])->update(['balance'=> strval($currentuser_balance)]);
+            if ($currentuser === null) {
+                return redirect()->back()->with('deposit_message', 'No user with the specified ID');
+            }
 
-                 //email subscription user
-                 $mailData = [
+            $currentuser = $currentuser->toArray();
+
+            if (empty($currentuser)) {
+                return redirect()->back()->with('deposit_message', 'No user with the specified ID');
+            }
+
+            if ($action === "approve") {
+                $currentuser_balance = floatval($currentuser['balance']) + floatval($depositAmount);
+                $depositUpdated = deposit::where('id', $depositId)->update(['deposit_status' => '1']);
+                $userUpdated = User::where('id', $userId)->update(['balance' => strval($currentuser_balance)]);
+
+                $mailData = [
                     'subject' => 'Deposit Confirmed',
-                    'body' => '<p>Your Deposit of $'.$data['depositamount'].' has been Approved</p>
+                    'body' => '<p>Your Deposit of $' . $depositAmount . ' has been Approved</p>
                     <p><strong>You can now login to your dashboard to start trading on your live account</strong></p>
                     ',
-                    'username'=> $currentuser['username']
+                    'username' => $currentuser['username']
                 ];
+
                 Mail::to($currentuser['email'])->send(new DepositapprovalMail($mailData));
 
-                //update and insert ref earnings
-                if($referExists){
-                    $refearnedamount = 0.05 * floatval($data['depositamount']);
-                    $newrefuserbalance = floatval($refuser['balance']) + $refearnedamount;
-                    $refBalanceUpdated = User::where('id',$refuser['id'])->update(['balance'=> strval($newrefuserbalance)]);
+                /**
+                 * REFERRAL LOGIC START
+                 */
 
-                    // Add deposit entry to justify ledger
-                    $depositdetails = [
-                        'user_id'=> $refuser['id'],
-                        'gateway'=> 'ReferralBonus',
-                        'amount'=> $refearnedamount,
-                        'deposit_status'=> '1',
-                    ];
-                    $refBalanceUpdated = deposit::create($depositdetails);
+                $refearnedamount = 0;
+                $newrefuserbalance = 0;
 
-                    if($refBalanceUpdated){
-                        //email Referee
-                        $mailData = [
-                            'subject' => 'Referal Bonus',
-                            'body' => '<p>You just earned $'.$refearnedamount.' from '.$currentuser['username'].'\'s deposit</p>
-                            <p><strong>You can now login to your dashboard to view balance</strong></p>
-                            ',
-                            'username'=> $refuser['username']
-                        ];
-                        Mail::to($refuser['email'])->send(new DepositapprovalMail($mailData));
+                $upline = User::where('refcode', $currentuser['referral_code'])->first();
+
+                if ($upline !== null) {
+                    $upline = $upline->toArray();
+                    $topUpline = $upline;
+                    $level += 1;
+                    $commissionPercentage = 5;
+                    $upline = User::where('refcode', $upline['referral_code'])->first();
+                    if ($upline !== null) {
+                        $midUpline = $topUpline;
+                        $topUpline = $upline;
+                        $level += 1;
+                        $commissionPercentage = 2;
+                        $upline = $upline->toArray();
+                        $upline = User::where('refcode', $upline['referral_code'])->first();
+                        if ($upline !== null) {
+                            $lastUpline = $midUpline;
+                            $midUpline = $topUpline;
+                            $topUpline = $upline->toArray();
+                            $level += 1;
+                            $commissionPercentage = 1;
+                        }
                     }
                 }
+
+                if ($level === 1) {
+                    $refearnedamount = 0.05 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($topUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $topUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $topUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $topUpline['username']
+                        ];
+
+                        Mail::to($topUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+                }
+
+                if ($level === 2) {
+                    $refearnedamount = 0.05 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($midUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $midUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $midUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $midUpline['username']
+                        ];
+
+                        Mail::to($midUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+
+                    $refearnedamount = 0.02 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($topUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $topUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $topUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $topUpline['username']
+                        ];
+
+                        Mail::to($topUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+                }
+
+                if ($level === 3) {
+                    // Top upline gets 1%
+                    $refearnedamount = 0.01 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($topUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $topUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $topUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $topUpline['username']
+                        ];
+
+                        Mail::to($topUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+
+                    // Mid upline gets 3%
+                    $refearnedamount = 0.02 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($midUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $midUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $midUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $midUpline['username']
+                        ];
+
+                        Mail::to($midUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+
+                    // Last upline gets 5%
+                    $refearnedamount = 0.05 * floatval($depositAmount);
+                    $newrefuserbalance = floatval($lastUpline['balance']) + $refearnedamount;
+                    $refBalanceUpdated = User::where('id', $lastUpline['id'])->update(['balance' => strval($newrefuserbalance)]);
+
+                    deposit::create([
+                        'user_id' => $lastUpline['id'],
+                        'gateway' => 'ReferralBonus',
+                        'amount' => $refearnedamount,
+                        'deposit_status' => '1',
+                    ]);
+
+                    if ($refBalanceUpdated) {
+                        $mailData = [
+                            'subject' => 'Referral Bonus',
+                            'body' => '<p>You just earned $' . $refearnedamount . ' from ' . $currentuser['username'] . '\'s deposit</p>
+                            <p><strong>You can now login to your dashboard to view balance</strong></p>
+                            ',
+                            'username' => $lastUpline['username']
+                        ];
+
+                        Mail::to($lastUpline['email'])->send(new DepositapprovalMail($mailData));
+                    }
+                }
+
                 return redirect()->back()->with('deposit_message', 'Your have successfully approved the deposit');
-
-            }elseif($data['action'] == "decline"){
-                //step 1 update deposit status to 1
-                $depositUpdated = deposit::where('id',$data['depositid'])->update(['deposit_status'=> '3']);
-
-                // //step 2 update investment status to 1
-                // $investmentsUpdated = investments::where('id',$data['investmentid'])->update(['plan_status'=> 3]);
-
+            } elseif ($action === "decline") {
+                $depositUpdated = deposit::where('id', $depositId)->update(['deposit_status' => '3']);
                 return redirect()->back()->with('deposit_message', 'Your have successfully declined the deposit');
             }
         }
-          
+
         $deposits = deposit::join('users', 'deposits.user_id', '=', 'users.id')
-            ->select('users.*', 'deposits.*')->orderBy('deposits.id','desc')
+            ->select('users.*', 'deposits.*')->orderBy('deposits.id', 'desc')
             ->get();
         return view('admin.deposit')->with(compact('deposits'));
     }

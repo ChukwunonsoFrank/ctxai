@@ -651,6 +651,14 @@ class DepositController extends Controller
         return ['selected_asset_data' => $selected_asset_data, 'trading_pair_data' => $trading_pair_data];
     }
 
+    public function calculateCompanyCommission($profit)
+    {
+        $amountEarned = floatval($profit);
+        $roundedAmountEarned = round($amountEarned, 2);
+        $onePercent = 0.01 * $roundedAmountEarned;
+        return round(floatval($onePercent), 2);
+    }
+
     public function fetchCurrentBotTrade()
     {
         $tradingbot = tradingbot::where([

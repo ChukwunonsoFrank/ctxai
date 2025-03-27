@@ -63,9 +63,12 @@
                                                     @if ($deposit['deposit_status'] == 1)
                                                         <span
                                                             class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-2xl text-xs font-bold bg-[#bce7e0] text-[#105754]">Confirmed</span>
-                                                    @else
+                                                    @elseif ($deposit['deposit_status'] == 0)
                                                         <span
                                                             class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#fecaca] text-[#941a1b]">Pending</span>
+                                                    @elseif ($deposit['deposit_status'] == 3)
+                                                        <span
+                                                            class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#40434c] text-[#ffffff]">Declined</span>
                                                     @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">
@@ -153,9 +156,12 @@
                                                 @if ($deposit['deposit_status'] == 1)
                                                     <span
                                                         class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-2xl text-xs font-bold bg-[#bce7e0] text-[#105754]">Confirmed</span>
-                                                @else
+                                                @elseif ($deposit['deposit_status'] == 0)
                                                     <span
                                                         class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#fecaca] text-[#941a1b]">Pending</span>
+                                                @elseif ($deposit['deposit_status'] == 3)
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#40434c] text-[#ffffff]">Declined</span>
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">

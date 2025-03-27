@@ -84,7 +84,7 @@
                                                         Referral Bonus
                                                     @endif
                                                 </td>
-                                                <td>@money($deposit->amount)</td>
+                                                <td>@money(floatval($deposit->amount))</td>
                                                 <td>
                                                     @if ($deposit->deposit_status == 1)
                                                         <div class="badge badge-success">Approved</div>

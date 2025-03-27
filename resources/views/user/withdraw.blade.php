@@ -72,7 +72,7 @@
                                                         class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#fecaca] text-[#941a1b]">Pending</span>
                                                 @elseif($withdraw['withdraw_status'] == 3)
                                                     <span
-                                                        class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#f1edbb] text-[#844c0e]">Declined</span>
+                                                        class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#40434c] text-[#ffffff]">Declined</span>
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">
@@ -169,7 +169,7 @@
                                                     class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#fecaca] text-[#941a1b]">Pending</span>
                                             @elseif($withdraw['withdraw_status'] == 3)
                                                 <span
-                                                    class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#f1edbb] text-[#844c0e]">Declined</span>
+                                                    class="inline-flex items-center gap-x-1.5 py-1 px-4 rounded-2xl text-xs font-bold bg-[#40434c] text-[#ffffff]">Declined</span>
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">
