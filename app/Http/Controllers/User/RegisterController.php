@@ -102,11 +102,11 @@ class RegisterController extends Controller
             if ($user && $invested) {
                 //email registered user
                 $mailData = [
-                    'title' => 'Welcome To Nxcai',
+                    'title' => 'Welcome To Exvb',
                     'username' => $data['username'],
                     'body' => '
                 <p>Your registration was successful and you can now login and  start trading to earn profits</p>
-                <p><strong>Follow these simple steps to start earning on Nxcai</strong></p>
+                <p><strong>Follow these simple steps to start earning on Exvb</strong></p>
                 <ul>
                     <li>Try out our ai trading robot using the demo account</li>
                     <li>Deposit into your Live account and start trading real assets</li>
@@ -119,7 +119,7 @@ class RegisterController extends Controller
                 $mailData = [
                     'title' => 'New User Registration',
                     'email' => $data['email'],
-                    'body' => '<p>' . $data['email'] . ' just signed up to Nxcai</p>
+                    'body' => '<p>' . $data['email'] . ' just signed up to Exvb</p>
                 <p><strong>Login to admin to follow up with user</strong></p>
                 ',
                     'username' => 'Admin'
@@ -130,7 +130,7 @@ class RegisterController extends Controller
                 if ($referExists) {
                     $mailData = [
                         'title' => 'You Refered Someone',
-                        'body' => '<p>' . $data['email'] . ' just signed up to Nxcai with your referral link</p>
+                        'body' => '<p>' . $data['email'] . ' just signed up to Exvb with your referral link</p>
                         
                         <p><strong>You will get a referal commision of 5% of their deposits , which means any time they make a deposit you get a 5% commision</strong></p>
                         ',

@@ -6,13 +6,13 @@
                     <img src="/homeassets/img/Ctxailogo.png" alt="Logo" width="40"
                         class="d-inline-block align-text-top">
                     <h3 class="text-white fs-5 pb-0 mb-0 px-1 d-none d-sm-none d-lg-block"
-                        style="letter-spacing: 1px!important;"><b>Nxcai</b> <span class="text-success"
+                        style="letter-spacing: 1px!important;"><b>Exvb</b> <span class="text-success"
                             style="color:#40ffdd!important;"><b>BOT</b></span></h3>
 
                 </a>
-                <p class="py-3" style="font-size: 12px;">Nxcai bot is suitable for both newbie traders and experienced traders, you don’t need to
-                    have any technical knowledge in cryptocurrency or forex trading to earn from Nxcai. Anyone can earn
-                    from Nxcai.</p>
+                <p class="py-3" style="font-size: 12px;">Exvb bot is suitable for both newbie traders and experienced traders, you don’t need to
+                    have any technical knowledge in cryptocurrency or forex trading to earn from Exvb. Anyone can earn
+                    from Exvb.</p>
                 <div class="d-flex flex-row gap-4 text-white">
                     <a style="font-size: 12px;" class="text-decoration-none text-white" aria-current="page" href="/service">Service Agreement</a>
                     <a style="font-size: 12px;" class="text-decoration-none text-white" aria-current="page" href="/privacy">Privacy Policy</a>
@@ -49,7 +49,7 @@
                 <h5 style="font-size: 13px;">Get the app</h5>
                 <div class="d-flex flex-row gap-3 justify-content-start py-1">
                     <a class="btn btn-outline-light bg-black btn-lg text-white fw-bold d-flex flex-column justify-content-center"
-                        href="/nxcai.apk">
+                        href="/exvb.apk">
                         <img src="/homeassets/img/google.svg" width="100%" alt="">
                     </a>
                     <a class="btn btn-outline-light bg-black btn-lg text-white fw-bold d-flex flex-column justify-content-center"
@@ -60,7 +60,7 @@
             </div>
             <div class="col-12 mt-4">
                 <p class="mb-4" style="font-size: 12px;"><i class="bi bi-geo-alt-fill"></i> 127, Grinzinger Street, 1130 Vienna, Austria.</p>
-                <p style="font-size: 12px;">Copyright © 2025 Nxcai, Inc.</p>
+                <p style="font-size: 12px;">Copyright © 2025 Exvb, Inc.</p>
             </div>
         </div>
     </div>

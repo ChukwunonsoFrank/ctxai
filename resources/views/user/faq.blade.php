@@ -13,7 +13,7 @@
                         'text-onSurfaceStrong dark:text-onSurfaceDarkStrong font-bold' :
                         'text-onSurface dark:text-onSurfaceDark font-medium'"
                     x-bind:aria-expanded="selectedAccordionItem === 'one' ? 'true' : 'false'">
-                    How does Nxcai works?
+                    How does Exvb works?
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
                         stroke="currentColor" class="size-5 shrink-0 transition" aria-hidden="true"
                         x-bind:class="selectedAccordionItem === 'one' ? 'rotate-180' : ''">
@@ -23,7 +23,7 @@
                 <div x-cloak x-show="selectedAccordionItem === 'one'" class="bg-[#292a37]" id="accordionItemOne"
                     role="region" aria-labelledby="controlsAccordionItemOne" x-collapse>
                     <div class="p-4 text-sm text-pretty">
-                        Nxcai is an automated Ai trading bot that helps you trade the forex and crypto
+                        Exvb is an automated Ai trading bot that helps you trade the forex and crypto
                         market easily with a proven scalping strategy powered by a strong algorithm that
                         trades the market, opens and closes trades within seconds targeting profits per
                         trade which in end accumulates profits gradually. All you need to do is create
@@ -52,7 +52,7 @@
                     role="region" aria-labelledby="controlsAccordionItemTwo" x-collapse>
                     <div class="p-4 text-sm  text-pretty">
                         No, you don't need any trading skills to profit from this, you can earn from
-                        Nxcai with zero knowledge in trading. The Ai bot handles all the trades for you
+                        Exvb with zero knowledge in trading. The Ai bot handles all the trades for you
                         and make profits, all you need to do is start the robot.
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                         'text-onSurfaceStrong dark:text-onSurfaceDarkStrong font-bold' :
                         'text-onSurface dark:text-onSurfaceDark font-medium'"
                     x-bind:aria-expanded="selectedAccordionItem === 'six' ? 'true' : 'false'">
-                    Does Nxcai Increase my returns daily?
+                    Does Exvb Increase my returns daily?
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
                         stroke="currentColor" class="size-5 shrink-0 transition" aria-hidden="true"
                         x-bind:class="selectedAccordionItem === 'six' ? 'rotate-180' : ''">
@@ -206,7 +206,7 @@
                 <div x-cloak x-show="selectedAccordionItem === 'eight'" class="bg-[#292A37]" id="accordionItemEight"
                     role="region" aria-labelledby="controlsAccordionItemEight" x-collapse>
                     <div class="p-4 text-sm  text-pretty">
-                        Getting started with Nxcai is very easy, you don't need any technical knowledge
+                        Getting started with Exvb is very easy, you don't need any technical knowledge
                         to earn from this. there are 4 strategies you can choose from each of them has a
                         certain minimum amount and a certain profit percentage, you will have to choose
                         the strategy that matches your trade amount. This works for every country, the

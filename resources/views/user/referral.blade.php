@@ -13,7 +13,7 @@
                 </div>
                 <div class="text-[#FFFFFF] font-bold my-2 mt-6">Referral link</div>
                 <div class="flex border-2 border-[#2A2B39] rounded-md focus:outline-0 mb-8">
-                    <div class="flex-1"><input id="userref" value="https://nxcai.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
+                    <div class="flex-1"><input id="userref" value="https://exvb.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
                     <div onclick="copyref()" class="flex-none w-12 rounded-tr-md rounded-br-md bg-[#1F202B] flex items-center justify-center"><img src="{{ asset('userassets/icons/duplicate.svg') }}"></div>
                 </div>
                 <div class="flex flex-col">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="text-[#FFFFFF] font-bold my-2 mt-6">Referral link</div>
                 <div class="flex border-2 border-[#2A2B39] rounded-md focus:outline-0 mb-8">
-                    <div class="flex-1"><input id="userref" value="https://nxcai.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
+                    <div class="flex-1"><input id="userref" value="https://exvb.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
                     <div onclick="copyref()" class="flex-none w-12 rounded-tr-md rounded-br-md bg-[#1F202B] flex items-center justify-center"><img src="{{ asset('userassets/icons/duplicate.svg') }}"></div>
                 </div>
                 <div class="flex flex-col">

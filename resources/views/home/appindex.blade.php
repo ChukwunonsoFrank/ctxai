@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nxcai - AI Trading bot</title>
+    <title>Exvb - AI Trading bot</title>
     
 
     <link rel="icon" type="image/png" href="/homeassets/img/Ctxailogo.png">
@@ -21,7 +21,7 @@
     <div class="container-fluid w-100 vh-100 bg-custom d-flex flex-col justify-content-center">
         <header class="w-100">
         <div class="form-wrapper w-100 h-auto pt-5">
-            <h1 class="text-light text-center fw-bold">Create a <br><span class="text-primary">Nxcai</span> account</h1>
+            <h1 class="text-light text-center fw-bold">Create a <br><span class="text-primary">Exvb</span> account</h1>
             <div class="row gy-3 text-white flex">
                 <div class="col-12">
                     <ul class="nav nav-underline justify-content-center gap-0" id="nav-bar-tab">

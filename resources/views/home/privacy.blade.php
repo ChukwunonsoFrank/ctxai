@@ -10,7 +10,7 @@
                 <h3 style="text-align: start;"><strong>Last updated: June 3, 2023</strong></h3>
                 <p></p>
                 <div style="text-align: start;b">
-                    <p style="">Hereby is described the practice of collecting and processing of personal data provided by persons (you) accessing a website <a href="https://nxcai.com/" target="_blank" style="color: rgb(0, 148, 255);">nxcai.com</a> (the <b>Site</b>) or the App of the company Nxcai Bot (the <b>Company</b> or we).</p>
+                    <p style="">Hereby is described the practice of collecting and processing of personal data provided by persons (you) accessing a website <a href="https://exvb.com/" target="_blank" style="color: rgb(0, 148, 255);">exvb.com</a> (the <b>Site</b>) or the App of the company Exvb Bot (the <b>Company</b> or we).</p>
                     <p style="">We inform you that the provisions of this Privacy Policy are subject to the up-to-date edition of the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (hereinafter <b>GDPR</b>), available at <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" style="color: rgb(0, 148, 255);">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a></p>
                 </div>
                 <h3 style="text-align: start;">1. Introduction</h3>
@@ -20,14 +20,14 @@
                 </div>
                 <h3 style="text-align: start;">2. Consent</h3>
                 <div style="text-align: start;b">
-                    <p style=""><b>2.1</b> By using the Site, the App, and/or accepting our <a target="_blank" href="https://nxcai.com/terms" style="color: rgb(0, 148, 255);">Terms</a> and <a target="_blank" href="https://nxcai.com/privacy" style="color: rgb(0, 148, 255);">Service Agreement</a> (the <b>Agreement</b>), you consent to the collection, processing and receipt of your personal data, as described in this Privacy Policy.</p>
+                    <p style=""><b>2.1</b> By using the Site, the App, and/or accepting our <a target="_blank" href="https://exvb.com/terms" style="color: rgb(0, 148, 255);">Terms</a> and <a target="_blank" href="https://exvb.com/privacy" style="color: rgb(0, 148, 255);">Service Agreement</a> (the <b>Agreement</b>), you consent to the collection, processing and receipt of your personal data, as described in this Privacy Policy.</p>
                 </div>
                 <h3 style="text-align: start;">3. Personal data we collect and objective</h3>
                 <div style="text-align: start;b">
                     <p style=""><b>3.1</b> We do not collect any data that may identify you without your permission. We follow the principle of data minimization, meaning that we only collect and use data that is required to accomplish the task relevant for provision of the Services.</p>
                     <p style=""><b>3.2</b> The Company does not require you to register in order to use the Services. However, when you access the Site or the App, we may collect and further process the following categories of data:</p>
                     <div>
-                        <p style=""><b>3.2.1</b> your email address and ID of the account at the Nxcai Trade platform. These are the only parameters that we send directly to our server;</p>
+                        <p style=""><b>3.2.1</b> your email address and ID of the account at the Exvb Trade platform. These are the only parameters that we send directly to our server;</p>
                         <p style=""><b>3.2.2</b> data, which we may collect through automated means. Through your use of the Site, we may also monitor and collect tracking information related to usages such as access date and time, device identification, operating system, browser type and IP address. This information may be obtained directly by the Company or through third-party services;</p>
                         <p style=""><b>3.2.3</b> data provided by you when referring your queries to the Company.</p>
                     </div>
@@ -147,13 +147,13 @@
                         <p style=""><b>8.14.1</b> session cookies will only stay on your device until you stop browsing;</p>
                         <p style=""><b>8.14.2</b> persistent cookies stay on your computer or mobile device until they expire or are deleted.</p>
                     </div>
-                    <p style=""><b>8.15</b> Some features of the App may require you to access third-party resources via the WebView or a similar built-in instrument for opening websites within the interface of the App. While you may be prompted to login to your account at the Nxcai Trade platform and connect it to the App in order to use some features of the App, we do not collect your login credentials and are unable to use your account. The only relevant data that we may collect through automated means is the statistics on the App&rsquo;s performance and automated actions performed by the Apps via your account at the Nxcai Trade platform.</p>
+                    <p style=""><b>8.15</b> Some features of the App may require you to access third-party resources via the WebView or a similar built-in instrument for opening websites within the interface of the App. While you may be prompted to login to your account at the Exvb Trade platform and connect it to the App in order to use some features of the App, we do not collect your login credentials and are unable to use your account. The only relevant data that we may collect through automated means is the statistics on the App&rsquo;s performance and automated actions performed by the Apps via your account at the Exvb Trade platform.</p>
                     <p style=""><b>8.16</b> In order to ensure the proper performance of the App and provide you with the better experience, we use the following third-party libraries that collect data:<br>Branch: <a href="https://branch.io/" target="_blank" style="color: rgb(0, 148, 255);">https://branch.io/</a><br>Amplitude: <a href="https://amplitude.com/" target="_blank" style="color: rgb(0, 148, 255);">https://amplitude.com/</a><br>Firebase: <a href="https://firebase.google.com/" target="_blank" style="color: rgb(0, 148, 255);">https://firebase.google.com/</a><br>OneSignal: <a href="https://onesignal.com/" target="_blank" style="color: rgb(0, 148, 255);">https://onesignal.com/</a><br>App Center: <a href="https://appcenter.ms/" target="_blank" style="color: rgb(0, 148, 255);">https://appcenter.ms/</a><br>JHMS Core: <a href="https://developer.huawei.com/consumer/en/hms/" target="_blank" style="color: rgb(0, 148, 255);">https://developer.huawei.com/consumer/en/hms/</a></p>
                 </div>
                 <h3 style="text-align: start;">9. Changes to this privacy policy</h3>
                 <div style="text-align: start;b">
                     <p style=""><b>9.1</b> Please note that we may amend this Privacy Policy from time to time at our sole discretion. Therefore, please check this document from time to time to get updates. If any significant updates in regard to data processing terms are made here, we will notify you additionally within reasonable time via email provided by you for the case or as your contact email.</p>
-                    <p style=""><b>9.2</b> If you require any additional information or have any further questions concerning this Privacy Policy, please contact us at <span style="color: rgb(0, 148, 255);">support@nxcai.com</span>.</p>
+                    <p style=""><b>9.2</b> If you require any additional information or have any further questions concerning this Privacy Policy, please contact us at <span style="color: rgb(0, 148, 255);">support@exvb.com</span>.</p>
                 </div>
                 
             </div>

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Nxcai </title>
+    <title>Exvb </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" href="/homeassets/img/Ctxailogo.png">
     <link href="{{ url('userassets/vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">

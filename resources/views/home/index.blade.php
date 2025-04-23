@@ -264,7 +264,7 @@
                             <div class="d-flex flex-column">
                                 <h5>Peace of Mind</h5>
                                 <p class="text-white">
-                                    At Nxcai, we prioritize your peace of mind above all. Our commitment to providing a secure, transparent, and reliable trading experience ensures that you maximize profits and funds secured.We employ cutting-edge security measures to protect your data, and our team is always available to provide clear communication and responsive support.</p>
+                                    At Exvb, we prioritize your peace of mind above all. Our commitment to providing a secure, transparent, and reliable trading experience ensures that you maximize profits and funds secured.We employ cutting-edge security measures to protect your data, and our team is always available to provide clear communication and responsive support.</p>
                             </div>
                         </div>
                     </div>
@@ -315,7 +315,7 @@
                             <div class="d-flex flex-column">
                                 <h5>Fully Powered by Ai</h5>
                                 <p class="text-white">
-                                    Nxcai robot uses Artificial Intelligence to trade the market with the best algorithm to minimize risk and maximize profits.No risk involved, why? This is because the robot closes and opens positions in Milliseconds, trades are not manually placed, the Ai handles all trades automatically.No skills required, you do not need any trading skill to use the Nxcai robot, it’s easy to use and it lets your money work for you.</p>
+                                    Exvb robot uses Artificial Intelligence to trade the market with the best algorithm to minimize risk and maximize profits.No risk involved, why? This is because the robot closes and opens positions in Milliseconds, trades are not manually placed, the Ai handles all trades automatically.No skills required, you do not need any trading skill to use the Exvb robot, it’s easy to use and it lets your money work for you.</p>
                             </div>
                         </div>
                     </div>
@@ -327,7 +327,7 @@
                             <div class="d-flex flex-column">
                                 <h5>Profitable Service</h5>
                                 <p class="text-white">
-                                    Our primary focus is ensuring that your trading experience is not only efficient but also highly profitable. Our AI-powered trading algorithms are built to maximize potential gains and help you achieve financial goals, and adapt to market changes in real time Your financial information and account details are securely stored and encrypted.The Nxcai robot is profitable for everyone whereby your money works for you on a daily basis with our fully automated trading robot..</p>
+                                    Our primary focus is ensuring that your trading experience is not only efficient but also highly profitable. Our AI-powered trading algorithms are built to maximize potential gains and help you achieve financial goals, and adapt to market changes in real time Your financial information and account details are securely stored and encrypted.The Exvb robot is profitable for everyone whereby your money works for you on a daily basis with our fully automated trading robot..</p>
                             </div>
                         </div>
                     </div>
@@ -458,11 +458,11 @@
                                             class="fw-semibold accordion-button collapsed"
                                             data-bs-target="#Tech-collapseOne" style="font-size: 20px;"
                                             data-bs-toggle="collapse" type="button">
-                                            How does Nxcai works?</button></h2>
+                                            How does Exvb works?</button></h2>
                                     <div aria-labelledby="Tech-headingOne" class="accordion-collapse collapse"
                                         data-bs-parent="#Tech-accordion" id="Tech-collapseOne">
                                         <div class="accordion-body" style="font-size: 14px;">
-                                            Nxcai is an automated Ai trading bot that helps you trade the forex and crypto
+                                            Exvb is an automated Ai trading bot that helps you trade the forex and crypto
                                             market easily with a proven scalping strategy powered by a strong algorithm that
                                             trades the market, opens and closes trades within seconds targeting profits per
                                             trade which in end accumulates profits gradually. All you need to do is create
@@ -482,7 +482,7 @@
                                         data-bs-parent="#Tech-accordion" id="Tech-collapseThree">
                                         <div class="accordion-body" style="font-size: 14px;">
                                             No, you don't need any trading skills to profit from this, you can earn from
-                                            Nxcai with zero knowledge in trading. The Ai bot handles all the trades for you
+                                            Exvb with zero knowledge in trading. The Ai bot handles all the trades for you
                                             and make profits, all you need to do is start the robot.
                                         </div>
                                     </div>
@@ -543,7 +543,7 @@
                                             class="fw-semibold accordion-button collapsed"
                                             data-bs-target="#Tech-collapseSeven" style="font-size: 20px;"
                                             data-bs-toggle="collapse" type="button">
-                                            Does Nxcai Increase my returns daily?</button></h2>
+                                            Does Exvb Increase my returns daily?</button></h2>
                                     <div aria-labelledby="Tech-headingSeven" class="accordion-collapse collapse"
                                         data-bs-parent="#Tech-accordion" id="Tech-collapseSeven">
                                         <div class="accordion-body" style="font-size: 14px;">
@@ -582,7 +582,7 @@
                                     <div aria-labelledby="Tech-headingNine" class="accordion-collapse collapse"
                                         data-bs-parent="#Tech-accordion" id="Tech-collapseNine">
                                         <div class="accordion-body" style="font-size: 14px;">
-                                            Getting started with Nxcai is very easy, you don't need any technical knowledge
+                                            Getting started with Exvb is very easy, you don't need any technical knowledge
                                             to earn from this. there are 4 strategies you can choose from each of them has a
                                             certain minimum amount and a certain profit percentage, you will have to choose
                                             the strategy that matches your trade amount. This works for every country, the

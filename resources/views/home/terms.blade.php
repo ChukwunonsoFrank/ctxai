@@ -10,12 +10,12 @@
                 <h3 style="text-align:"><strong>Last updated: May 3, 2023</strong></h3>
                 <p></p>
                 <div style="text-align: start;">
-                    <p>Nxcai is a bot that was created for automated trading on the Nxcai platform. To use the Site and the Appyou must agree to the below terms, so please read them carefully.</p>
+                    <p>Exvb is a bot that was created for automated trading on the Exvb platform. To use the Site and the Appyou must agree to the below terms, so please read them carefully.</p>
                 </div>
                 <h3 style="text-align:">1. Introduction</h3>
                 <div style="text-align: start;">
-                    <p><b>1.1</b> These Terms and Conditions (the <b>Terms</b>) govern the use of certain services, including accessing the website <a href="https://nxcai.com/" target="_blank" style="color: rgb(0, 148, 255);">nxcai.com</a> with all its subpages, related subdomains and domains with URL redirection to that website (the <b>Site</b>), using the NxcaiRobot application available at Google Play via the <a href="https://play.google.com/store/apps/details?id=com.trade.NxcaiRobot" target="_blank" style="color: rgb(0, 148, 255);">link</a> and at AppStore, and/or browser extension available via the <a href="https://chrome.google.com/webstore/detail/epechikapdipcpfihonkhmnknbjmnlmi" target="_blank" style="color: rgb(0, 148, 255);">link</a> (the <b>App</b>) (collectively, the <b>Services</b>), provided by NxcaiRobot (the <b>Company</b> or we) to any individual who uses the Services (you).</p>
-                    <p><b>1.2</b> If you have any questions regarding these Terms or about the Company, please contact us by email at <span style="color: rgb(0, 148, 255);">info@nxcai.com</span>.</p>
+                    <p><b>1.1</b> These Terms and Conditions (the <b>Terms</b>) govern the use of certain services, including accessing the website <a href="https://exvb.com/" target="_blank" style="color: rgb(0, 148, 255);">exvb.com</a> with all its subpages, related subdomains and domains with URL redirection to that website (the <b>Site</b>), using the ExvbRobot application available at Google Play via the <a href="https://play.google.com/store/apps/details?id=com.trade.ExvbRobot" target="_blank" style="color: rgb(0, 148, 255);">link</a> and at AppStore, and/or browser extension available via the <a href="https://chrome.google.com/webstore/detail/epechikapdipcpfihonkhmnknbjmnlmi" target="_blank" style="color: rgb(0, 148, 255);">link</a> (the <b>App</b>) (collectively, the <b>Services</b>), provided by ExvbRobot (the <b>Company</b> or we) to any individual who uses the Services (you).</p>
+                    <p><b>1.2</b> If you have any questions regarding these Terms or about the Company, please contact us by email at <span style="color: rgb(0, 148, 255);">info@exvb.com</span>.</p>
                 </div>
                 <h3 style="text-align:">2. Acceptance</h3>
                 <div style="text-align: start;">
@@ -24,7 +24,7 @@
                 </div>
                 <h3 style="text-align:">3. Privacy</h3>
                 <div style="text-align: start;">
-                    <p><b>3.1</b> Please refer to our <a target="_blank" href="https://nxcai.com/terms/privacy-policy" style="color: rgb(0, 148, 255);">Privacy Policy</a>, that is an integral part of these Terms, for information on how we collect, use, and disclose personal data. You acknowledge and agree that your use of the Services is subject to our Privacy Policy.</p>
+                    <p><b>3.1</b> Please refer to our <a target="_blank" href="https://exvb.com/terms/privacy-policy" style="color: rgb(0, 148, 255);">Privacy Policy</a>, that is an integral part of these Terms, for information on how we collect, use, and disclose personal data. You acknowledge and agree that your use of the Services is subject to our Privacy Policy.</p>
                 </div>
                 <h3 style="text-align:">4. Changes to the terms</h3>
                 <div style="text-align: start;">
@@ -47,7 +47,7 @@
                     <p><b>6.3</b> The Services and all content, functions, and materials made available to you are provided &ldquo;as is&rdquo; or &ldquo;as available,&rdquo; without warranty of any kind, either express or implied, including, without limitation, any warranties of title, non-infringement, merchantability or fitness for a particular purpose.</p>
                     <p><b>6.4</b> Neither the Company nor its current or future affiliates, subsidiaries, nor its or their officers, directors, employees or agents (collectively, the <b>Affiliated Parties</b>) warrant that any of the foregoing will be timely, secure, uninterrupted or error-free, or that defects will be corrected. None of the Affiliated Parties shall be liable for any damage to, or viruses that may infect your computer equipment or other property on account of your access to or use of any of the foregoing.</p>
                     <p><b>6.5</b> The Site allows you to access the information service. The data obtained by you from the use of our Services is of exclusively informatory nature.</p>
-                    <p><b>6.6</b> The Appallows you to set upthe automated trading via your account at Nxcai platform as described in our <a target="_blank" href="https://nxcai.com/service" style="color: rgb(0, 148, 255);">Service Agreement</a>.</p>
+                    <p><b>6.6</b> The Appallows you to set upthe automated trading via your account at Exvb platform as described in our <a target="_blank" href="https://exvb.com/service" style="color: rgb(0, 148, 255);">Service Agreement</a>.</p>
                     <p><b>6.7</b> All information provided to you through Services is the sole property of the Company and is provided to you for your sole individual use. No part of such information may be reproduced, distributed, transmitted, or otherwise made available without our prior consent. Any unauthorized disclosure is strictly prohibited. The Company reserves its right to claim damages from you, including any loss of profits, for your unauthorized use of such information.</p>
                     <p><b>6.8</b> By accessing and using the Services, you hereby agree that:</p>
                     <div>
@@ -66,7 +66,7 @@
                         <p><b>6.8.8</b> you will not use any robot or other automated means to access the Services for any purpose without our express written permission; provided, however, we grant the operators of public search engines permission to use spiders to copy materials from the public portions of the Services for the sole purpose of and solely to the extent necessary for creating publicly-available searchable indices of the materials, but not caches or archives of such materials;</p>
                         <p><b>6.8.9</b> you will not take any action that imposes or may impose (as determined in our sole discretion) an unreasonable or disproportionately large load on our technical infrastructure.</p>
                     </div>
-                    <p><b>6.9</b> We respect the intellectual property rights of others. We will respond expeditiously to claims of copyright infringement. If you see any material within our Services that in your good faith belief may infringe someone&rsquo;s copyright, you may notify us by emailing us at <span style="color: rgb(0, 148, 255);">info@nxcai.com</span> with &ldquo;Copyright&rdquo; in the subject line.</p>
+                    <p><b>6.9</b> We respect the intellectual property rights of others. We will respond expeditiously to claims of copyright infringement. If you see any material within our Services that in your good faith belief may infringe someone&rsquo;s copyright, you may notify us by emailing us at <span style="color: rgb(0, 148, 255);">info@exvb.com</span> with &ldquo;Copyright&rdquo; in the subject line.</p>
                     
                 </div>
                 <h3 style="text-align:">7. Indemnification</h3>

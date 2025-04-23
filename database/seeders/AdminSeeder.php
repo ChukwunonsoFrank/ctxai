@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         $adminRecords = [
             [
                 'id'=> 1, 
-                'name'=>'Nxcai admin', 
+                'name'=>'Exvb admin', 
                 'type'=>'admin',
                 'vendor_id'=>'0',
                 'mobile'=>'8373839383', 

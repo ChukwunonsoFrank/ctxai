@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nxcai - Ai Trading Bot</title>
+    <title>Exvb - Ai Trading Bot</title>
     @vite('resources/css/app.css')
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -1250,7 +1250,7 @@
             </div>
             <div class="text-left">
                 <div class="text-center">
-                    <h2 class="text-[#FFFFFF] text-lg font-bold underline">How to Use the Nxcai Robot and Start Earning Profits:</h2>
+                    <h2 class="text-[#FFFFFF] text-lg font-bold underline">How to Use the Exvb Robot and Start Earning Profits:</h2>
                 </div>
                 <h4 class="my-2 text-[#FFFFFF] text-sm font-bold">How to start the robot?</h4>
                 <p class="text-sm my-2 text-[#FFFFFF]">
@@ -1279,7 +1279,7 @@
                 <p class="text-sm my-2 text-[#FFFFFF]">
                     5.There are both Live and Demo accounts available. To make real profits, deposit funds into your Live account and start using the robot.
                 </p>
-                <p class="text-sm my-2 text-[#FFFFFF]">Feel free to contact us if you need any help with using the Nxcai Robot!</p>
+                <p class="text-sm my-2 text-[#FFFFFF]">Feel free to contact us if you need any help with using the Exvb Robot!</p>
             </div>
         </div>
     </div>
@@ -1314,7 +1314,7 @@
             <div class="my-6">
                 <div class="text-[#FFFFFF] font-bold mb-1">Referral link</div>
                 <div class="flex border-2 border-[#2A2B39] rounded-md focus:outline-0">
-                    <div class="flex-1"><input id="userref" value="https://nxcai.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
+                    <div class="flex-1"><input id="userref" value="https://exvb.com/user/register/{{ $user['refcode'] }}" class="w-full text-xs rounded-md rounded-tr-none rounded-br-none px-4 py-4 bg-[#1F202B] text-[#98A4B3]" type="text" readonly></div>
                     <div onclick="copyref()" class="flex-none w-12 rounded-tr-md rounded-br-md bg-[#1F202B] flex items-center justify-center"><img src="{{ asset('userassets/icons/duplicate.svg') }}"></div>
                 </div>
             </div>

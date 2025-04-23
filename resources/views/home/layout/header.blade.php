@@ -5,7 +5,7 @@
                 <img src="{{ asset('homeassets/img/Ctxailogo.png') }}" alt="Logo" width="40"
                     class="d-inline-block align-text-top">
                 <h3 class="text-white fs-5 pb-0 mb-0 px-1 d-none d-sm-none d-lg-block"
-                    style="letter-spacing: 1px!important;"><b>Nxcai</b> <span class="text-success"
+                    style="letter-spacing: 1px!important;"><b>Exvb</b> <span class="text-success"
                         style="color:#40ffdd!important;"><b>BOT</b></span></h3>
 
             </a>

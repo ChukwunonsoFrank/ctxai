@@ -75,14 +75,14 @@ body {
             <div style="color: #000000; font-family: inherit; font-size: 12px; font-weight: normal; padding: 12px 24px 12px 24px; text-align: center; max-width: 100%; box-sizing: border-box;">
               <div class="MuiBox-root css-vii0ua" style="box-sizing: inherit;">
                 <div style="box-sizing: inherit;">
-                  <p style="box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; text-decoration: underline;">support@nxcai.com</p>
+                  <p style="box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; text-decoration: underline;">support@exvb.com</p>
                 </div>
               </div>
             </div>
             <div style="color: #000000; font-family: inherit; font-size: 12px; font-weight: normal; padding: 12px 24px 12px 24px; text-align: center; max-width: 100%; box-sizing: border-box; border-bottom: 6px solid #40ffdd;">
               <div class="MuiBox-root css-vii0ua" style="box-sizing: inherit;">
                 <div style="box-sizing: inherit;">
-                  <p style="box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; text-decoration: underline;">www.nxcai.com</p>
+                  <p style="box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; text-decoration: underline;">www.exvb.com</p>
                 </div>
               </div>
             </div>

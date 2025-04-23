@@ -51,17 +51,17 @@ class HomeController extends Controller
                     //email admin
                     $mailData = [
                         'title' => 'Password Reset',
-                        'body' => '<p>We have received a request to reset the password for your account on Nxcai. To proceed with resetting your password, please follow the instructions below:</p>
+                        'body' => '<p>We have received a request to reset the password for your account on Exvb. To proceed with resetting your password, please follow the instructions below:</p>
                             </br>
                             <p>Click on the following link to reset your password:</p>
                          
-                            <a href="https://nxcai.com/resetpassword/reset?q='.$remember_token.'" style="background-color: teal; color: white;padding-top: 5px ;
+                            <a href="https://exvb.com/resetpassword/reset?q='.$remember_token.'" style="background-color: teal; color: white;padding-top: 5px ;
                         padding-bottom: 5px ;
                         padding-left: 10px ;
                         padding-right: 10px ; text-decoration: none; margin: auto;"> Reset Password </a>
                             </br>
                            <p> If clicking the link doesnt work, you can copy and paste the URL below into your web browsers address bar:</p>
-                            <a href="https://nxcai.com/resetpassword/reset?q='.$remember_token.'">https://nxcai.com/resetpassword/reset?q='.$remember_token.'</a> ',
+                            <a href="https://exvb.com/resetpassword/reset?q='.$remember_token.'">https://exvb.com/resetpassword/reset?q='.$remember_token.'</a> ',
                         'username'=> $user['username']
                     ];
                     

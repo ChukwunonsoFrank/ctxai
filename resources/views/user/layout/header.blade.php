@@ -248,7 +248,7 @@
 window.parent.postMessage({
     type: 'smartSuppMessage',
     href: window.location.href
-}, 'https://nxcai.com'); // Replace with your site’s URL
+}, 'https://exvb.com'); // Replace with your site’s URL
     </script>
 
         </iframe>

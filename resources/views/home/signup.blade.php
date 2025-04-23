@@ -100,7 +100,7 @@
                                         <div class="col-12 text-center">
                                             <p style="font-size: 13px;">By pressing Register, you confirm that you are of legal age and accept the <a class="text-primary fw-bold"
                                                     href="/terms">Terms & Conditions</a> and <a class="text-primary fw-bold" href="/privacy">Privacy
-                                                    Policy</a> as well as to Nxcai Robot <a class="text-primary fw-bold" href="/terms">Terms &
+                                                    Policy</a> as well as to Exvb Robot <a class="text-primary fw-bold" href="/terms">Terms &
                                                     Conditions</a> and <a class="text-primary fw-bold" href="/privacy">Privacy Policy</a></p>
                                         </div>
 
