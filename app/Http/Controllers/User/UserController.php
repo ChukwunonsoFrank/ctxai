@@ -16,7 +16,6 @@ use App\Models\plans;
 use App\Models\Trade;
 use App\Models\tradingbot;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {

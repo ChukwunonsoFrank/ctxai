@@ -23,6 +23,11 @@ Route::get('/clear-cache', function () {
     dd('optimize ran');
 });
 
+Route::get('/cache', function () {
+    Artisan::call('optimize');
+    dd('cached');
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\Home'], function()
 {  
     Route::get('/', 'HomeController@index')->name('home.index');
