@@ -55,10 +55,10 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="mb-3">
+                                <div class="mb-3">
                                     <div class="g-recaptcha mt-4"
                                         data-sitekey="{{ config('services.recaptcha.key') }}"></div>
-                                </div> --}}
+                                </div>
 
                                 <div class="d-grid">
                                     <button type="submit" id="loginBtn" class="btn btn-primary text-white py-3 fw-bold">Login</button>

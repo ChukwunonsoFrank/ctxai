@@ -16,6 +16,7 @@ use App\Models\plans;
 use App\Models\Trade;
 use App\Models\tradingbot;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -113,7 +114,6 @@ class UserController extends Controller
                 $amount_earned = 0;
 
                 $botTrade = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
-                
 
                 if($botTrade[0]['stopped_robot_at_position']) {
                     $decodedTrades = json_decode($botTrade[0]['trades']);
