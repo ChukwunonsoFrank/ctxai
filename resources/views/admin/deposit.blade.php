@@ -129,6 +129,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                {{ $deposits->links() }}
+                            </div>
+                        </div>
                     </div>
                     
                 </div>

@@ -182,6 +182,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //users route
         Route::match(['get','post'],'users', 'AdminController@users');
 
+        //search route
+        Route::get('/users/search', 'AdminController@searchUsers');
+
         //Email route
         Route::match(['get','post'],'email', 'AdminController@email');
 

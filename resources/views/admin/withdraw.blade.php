@@ -126,6 +126,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                {{ $withdraws->links() }}
+                            </div>
+                        </div>
                     </div>
                     
                 </div>

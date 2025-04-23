@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -68,5 +69,30 @@ class User extends Authenticatable
         static::created(function ($user) {
             session(['just_registered' => true]);
         });
+    }
+
+    public function scopeSearch(Builder $query, string $term): Builder
+    {
+        $preparedTerm = $this->prepareSearchTerm($term);
+
+        return $query->whereRaw(
+            'MATCH(username, email) AGAINST(? IN BOOLEAN MODE)',
+            [$preparedTerm]
+        );
+
+    }
+
+    protected function prepareSearchTerm(string $term): string
+    {
+        $words = explode(' ', trim($term));
+
+        $preparedWords = array_map(function($word) {
+            if (strlen($word) > 2 && !preg_match('/[+\-><*~"()@]/', $word)) {
+                return '+' . $word . '*'; // Add '+' for required, '*' for wildcard
+            }
+            return $word . '*'; // Add wildcard for partial matching
+        }, $words);
+
+        return implode(' ', $preparedWords);
     }
 }

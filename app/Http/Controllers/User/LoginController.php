@@ -30,21 +30,21 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->getCredentials();
-        // $recaptcha = $request->input('g-recaptcha-response');
+        $recaptcha = $request->input('g-recaptcha-response');
 
-        // if (is_null($recaptcha)) {
-        //     $request->session()->flash('login_error', "Please confirm you are not a robot.");
-        //     return redirect()->back();
-        // }
+        if (is_null($recaptcha)) {
+            $request->session()->flash('login_error', "Please confirm you are not a robot.");
+            return redirect()->back();
+        }
 
-        // $response = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-        //     'secret' => config('services.recaptcha.secret'),
-        //     'response' => $recaptcha
-        // ]);
+        $response = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+            'secret' => config('services.recaptcha.secret'),
+            'response' => $recaptcha
+        ]);
 
-        // $result = $response->json();
+        $result = $response->json();
 
-        // if ($response->successful() && $result['success'] == true) {
+        if ($response->successful() && $result['success'] == true) {
             if(!Auth::validate($credentials)){
                 return redirect()->to('user/login')->withErrors(['msg' => 'Email or Password Incorrect']);
             }
@@ -63,10 +63,10 @@ class LoginController extends Controller
             Session::put('not_account_balance', $user->balance);
                     
             return $this->authenticated($request, $user);
-        // } else {
-        //     $request->session()->flash('login_error', "Please confirm you are not a robot.");
-        //     return redirect()->back();
-        // }      
+        } else {
+            $request->session()->flash('login_error', "Please confirm you are not a robot.");
+            return redirect()->back();
+        }      
     }
 
     public function applogin(LoginRequest $request)

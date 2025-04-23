@@ -114,11 +114,24 @@ class AdminController extends Controller
 
 
 
-        $users = User::query();
-
-        $users = $users->orderBy('id', 'desc')->get()->toArray();
+        $users = User::orderBy('id', 'desc')->paginate(50);
 
         return view('admin.users')->with(compact('users'));
+    }
+
+    public function searchUsers(Request $request)
+    {
+        $searchTerm = $request->input('query');
+
+        if (empty($searchTerm)) {
+            $users = User::orderBy('id', 'desc')->paginate(50);
+    
+            return view('admin.users')->with(compact('users'));
+        }
+
+        $users = User::search($searchTerm)->paginate(50);
+
+        return view('admin.users', compact('users', 'searchTerm'));
     }
 
     public function email(Request $request)

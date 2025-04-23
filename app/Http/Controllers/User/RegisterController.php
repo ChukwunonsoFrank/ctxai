@@ -73,21 +73,21 @@ class RegisterController extends Controller
             $validated['referral_code'] = "null";
         }
 
-        // $recaptcha = $request->input('g-recaptcha-response');
+        $recaptcha = $request->input('g-recaptcha-response');
 
-        // if (is_null($recaptcha)) {
-        //     $request->session()->flash('message', "  Please confirm you are not a robot ");
-        //     return redirect()->back();
-        // }
+        if (is_null($recaptcha)) {
+            $request->session()->flash('message', "  Please confirm you are not a robot ");
+            return redirect()->back();
+        }
 
-        // $response = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-        //     'secret' => config('services.recaptcha.secret'),
-        //     'response' => $recaptcha
-        // ]);
+        $response = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+            'secret' => config('services.recaptcha.secret'),
+            'response' => $recaptcha
+        ]);
 
-        // $result = $response->json();
+        $result = $response->json();
 
-        // if ($response->successful() && $result['success'] == true) {
+        if ($response->successful() && $result['success'] == true) {
             $user = User::create($validated);
             $lastid = User::all()->last()->id;
 
@@ -149,9 +149,9 @@ class RegisterController extends Controller
             Session::put('account_type', 'demo');
             Session::put('account_balance', $user->demo_balance);
             return redirect('/user/dashboard')->with('signup_success', "Account successfully registered.");
-        // } else {
-        //     $request->session()->flash('message', "  Please confirm you are not a robot ");
-        //     return redirect()->back();
-        // }
+        } else {
+            $request->session()->flash('message', "  Please confirm you are not a robot ");
+            return redirect()->back();
+        }
     }
 }

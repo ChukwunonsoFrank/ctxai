@@ -54,8 +54,8 @@ class UserController extends Controller
                 $botTrade = Trade::where('bot_id', $tradingbot_id)->get()->toArray();
 
                 if($botTrade[0]['stopped_robot_at_position']) {
+                    $decodedTrades = json_decode($botTrade[0]['trades']);
                     for ($i = 0; $i < $botTrade[0]['stopped_robot_at_position']; $i++) {
-                        $decodedTrades = json_decode($botTrade[0]['trades']);
                         $profit = $decodedTrades[$i]->profit;
                         $amount_earned += $profit;
                     }
@@ -116,8 +116,8 @@ class UserController extends Controller
                 
 
                 if($botTrade[0]['stopped_robot_at_position']) {
+                    $decodedTrades = json_decode($botTrade[0]['trades']);
                     for ($i = 0; $i < $botTrade[0]['stopped_robot_at_position']; $i++) {
-                        $decodedTrades = json_decode($botTrade[0]['trades']);
                         $profit = $decodedTrades[$i]->profit;
                         $amount_earned += $profit;
                     }
@@ -1744,8 +1744,8 @@ class UserController extends Controller
 
         $transformedTradingBotsHistory = array_map(function ($bot) {
             $amountEarned = 0;
+            $decodedTrades = json_decode($bot["trades"]);
             for ($i = 0; $i < $bot['stopped_robot_at_position']; $i++) {
-                $decodedTrades = json_decode($bot["trades"]);
                 $profit = $decodedTrades[$i]->profit;
                 $amountEarned += $profit;
             }

@@ -3,6 +3,12 @@
 
 @section('content')
 
+<style>
+    div.dt-container div.dt-layout-row {
+        display: none;
+    }
+</style>
+
 <!--**********************************
             Content body start
         ***********************************-->
@@ -30,6 +36,16 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">All Users</h4>
+                                <div class="d-flex align-content-center">
+                                    <div>
+                                        <p>Search:</p>
+                                    </div>
+                                    <div>
+                                        <form action="{{ url('admin/users/search') }}" method="get">
+                                            <input class="py-1" type="text" name="query">
+                                        </form>
+                                    </div>
+                                </div>
                              
                             </div>
                             <div class="card-body">
@@ -114,6 +130,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                {{ $users->links() }}
                             </div>
                         </div>
                     </div>

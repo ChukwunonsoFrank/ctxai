@@ -58,8 +58,7 @@ class WithdrawController extends Controller
           
         $withdraws = DB::table('withdraws')
             ->join('users', 'withdraws.user_id', '=', 'users.id')
-            ->select('users.*', 'withdraws.*')->orderBy('withdraws.id','desc')
-            ->get();
+            ->select('users.*', 'withdraws.*')->orderBy('withdraws.id','desc')->paginate(50);
         return view('admin.withdraw')->with(compact('withdraws'));
     }
 }

@@ -262,8 +262,7 @@ class DepositController extends Controller
         }
 
         $deposits = deposit::join('users', 'deposits.user_id', '=', 'users.id')
-            ->select('users.*', 'deposits.*')->orderBy('deposits.id', 'desc')
-            ->get();
+            ->select('users.*', 'deposits.*')->orderBy('deposits.id', 'desc')->paginate(50);
         return view('admin.deposit')->with(compact('deposits'));
     }
 }
