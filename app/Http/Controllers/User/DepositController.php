@@ -755,7 +755,7 @@ class DepositController extends Controller
                     ',
                     'username'=> "Admin"
                 ];
-                Mail::to(env('ADMIN_EMAIL'))->send(new DepositMail($mailData));
+                Mail::to('Justintristan230@gmail.com')->send(new DepositMail($mailData));
                 session()->flash('success_message', 'Your Deposit Request has been made successfully, Your Live account will be updated when payment is confirmed.');
 
                 return redirect()->intended('user/deposits')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with(compact('tradingbots', 'plans'));

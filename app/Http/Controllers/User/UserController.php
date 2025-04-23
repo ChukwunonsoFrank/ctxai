@@ -1057,7 +1057,7 @@ class UserController extends Controller
             }
 
             if ($i > 0) {
-                $timerEndsAt = Carbon::createFromTimestampMs($previousTimestamp)->addMinutes(intval($duration))->addSeconds(8)->getPreciseTimestamp(3) ;
+                $timerEndsAt = Carbon::createFromTimestampMs($previousTimestamp)->addMinutes(intval($duration))->addSeconds(8)->getPreciseTimestamp(3);
                 $previousTimestamp = $timerEndsAt;
             }
 

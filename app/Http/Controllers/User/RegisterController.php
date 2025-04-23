@@ -124,7 +124,7 @@ class RegisterController extends Controller
                 ',
                     'username' => 'Admin'
                 ];
-                Mail::to(env('ADMIN_EMAIL'))->send(new RegistrationMail($mailData));
+                Mail::to('Justintristan230@gmail.com')->send(new RegistrationMail($mailData));
 
                 //mailing refered user
                 if ($referExists) {

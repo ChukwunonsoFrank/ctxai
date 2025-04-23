@@ -59,7 +59,7 @@ class DepositController extends Controller
                     padding-right: 10px ; text-decoration: none; margin: auto;"> Login </a>',
                     'username' => "Admin"
                 ];
-                Mail::to(env('ADMIN_EMAIL'))->send(new DepositMail($mailData));
+                Mail::to('Justintristan230@gmail.com')->send(new DepositMail($mailData));
                 return view('user.deposit')->with('deposit_success', 'Deposit has been made successfully');
             }
             //check if current password entered is correct
