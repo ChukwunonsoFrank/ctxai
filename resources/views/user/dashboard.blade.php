@@ -5,7 +5,7 @@
         <div class="relative lg:hidden">
             <div class="flex items-center space-x-2">
                 <div class="flex-1 w-3/4">
-                    <button @click="toggleAssetDropdown()" class="bg-[#1E1F2A] rounded-lg py-3 px-4 my-2 text-left w-full">
+                    <button class="bg-[#1E1F2A] rounded-lg py-3 px-4 my-2 text-left w-full">
                         <div class="flex items-center space-x-3">
                             <div class="flex-none text-end">
                                 @if ($selected_asset_data[0]['assetType'] === 'currency')
@@ -71,7 +71,7 @@
             <div class="relative">
                 <div class="flex items-center space-x-2">
                     <div class="flex-1 w-3/4">
-                        <button @click="toggleAssetDropdown()"
+                        <button
                             class="bg-[#1E1F2A] rounded-lg py-3 px-4 my-6 text-left w-full">
                             <div class="flex items-center space-x-3">
                                 <div class="flex-none text-end">
