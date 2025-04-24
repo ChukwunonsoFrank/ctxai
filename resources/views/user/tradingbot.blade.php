@@ -64,6 +64,7 @@
                     </div>
                 </div>
                 @endif
+                @if (count($transformedTradingBotsHistory) >= 10)
                 <div>
                     <a href="{{ $next_page_url }}">
                         <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
@@ -71,6 +72,7 @@
                         </button>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -137,6 +139,7 @@
                     </div>
                 </div>
                 @endif
+                @if (count($transformedTradingBotsHistory) >= 10)
                 <div>
                     <a href="{{ $next_page_url }}">
                         <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
@@ -144,6 +147,7 @@
                         </button>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
