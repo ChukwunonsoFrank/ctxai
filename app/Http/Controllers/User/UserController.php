@@ -1717,7 +1717,8 @@ class UserController extends Controller
                 'tradingbots.status' => '1',
             ])
             ->get()->toArray();
-        $tradingbotshistory = tradingbot::join('trades', 'tradingbots.id', '=', 'trades.bot_id')->select('tradingbots.*', 'trades.*')->orderBy('tradingbots.id', 'desc')->where(['tradingbots.user_id' => Auth::User()->id])->get()->toArray();
+
+        $tradingbotshistory = tradingbot::join('trades', 'tradingbots.id', '=', 'trades.bot_id')->select('tradingbots.*', 'trades.*')->orderBy('tradingbots.id', 'desc')->where(['tradingbots.user_id' => Auth::User()->id])->paginate(10)->toArray();
 
         $transformedTradingBotsHistory = array_map(function ($bot) {
             return [
@@ -1739,7 +1740,7 @@ class UserController extends Controller
                 "trades" => $bot["trades"],
                 "stopped_robot_at_position" => $bot["stopped_robot_at_position"] === null ? 0 : $bot["stopped_robot_at_position"],
             ];
-        }, $tradingbotshistory);
+        }, $tradingbotshistory['data']);
 
         $transformedTradingBotsHistory = array_map(function ($bot) {
             $amountEarned = 0;
@@ -1772,9 +1773,9 @@ class UserController extends Controller
                 "stopped_robot_at_position" => $bot["stopped_robot_at_position"] === null ? 0 : $bot["stopped_robot_at_position"],
                 "display_profit" => floatval($amountEarned)
             ];
-        }, $tradingbotshistory);
+        }, $tradingbotshistory['data']);
         
-        return view('user.tradingbot')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data']])->with($this->getUserDetails())->with(compact('tradingbots', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
+        return view('user.tradingbot')->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data'], 'next_page_url' => $tradingbotshistory['next_page_url'], 'prev_page_url' => $tradingbotshistory['prev_page_url']])->with($this->getUserDetails())->with(compact('tradingbots', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
     }
 
     public function fetchBotTradeForBotId($id)

@@ -52,6 +52,26 @@
                 <p class="text-xs text-[#98a4b3]">You have no trades on this account</p>
             </div>
             @endforelse
+            <div class="flex space-x-2 justify-center items-center">
+                @if ($prev_page_url !== null)
+                <div>
+                    <div>
+                        <a href="{{ $prev_page_url }}">
+                            <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
+                                <span class="text-[#FFFFFF] text-xs font-bold">&laquo; Previous</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                @endif
+                <div>
+                    <a href="{{ $next_page_url }}">
+                        <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
+                            <span class="text-[#FFFFFF] text-xs font-bold">Next &raquo;</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -105,6 +125,26 @@
                 <p class="text-xs text-[#98a4b3]">You have no trades on this account</p>
             </div>
             @endforelse
+            <div class="flex space-x-2 justify-center items-center">
+                @if ($prev_page_url !== null)
+                <div>
+                    <div>
+                        <a href="{{ $prev_page_url }}">
+                            <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
+                                <span class="text-[#FFFFFF] text-xs font-bold">&laquo; Previous</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                @endif
+                <div>
+                    <a href="{{ $next_page_url }}">
+                        <button id="__check_trade_lg" type="submit" class="border-2 border-[#40ffdd] rounded-lg py-0 px-2 mt-2">
+                            <span class="text-[#FFFFFF] text-xs font-bold">Next &raquo;</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
