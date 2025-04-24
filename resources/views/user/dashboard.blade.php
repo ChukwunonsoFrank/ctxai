@@ -39,7 +39,7 @@
                     @endif
                 </div>
             </div>
-            <div x-cloak x-show="isAssetDropdownOpen" @click.outside="isAssetDropdownOpen = false"
+            {{-- <div x-cloak x-show="isAssetDropdownOpen" @click.outside="isAssetDropdownOpen = false"
                 class="bg-[#1F202B] absolute top-4 border-2 rounded-lg border-[#2A2B39] w-full h-64 overflow-scroll p-4">
                 @foreach ($trading_pair_data as $pair)
                     <a href="{{ route('change_asset_pair', ['tvwidgetsymbol' => $pair['symbol']]) }}">
@@ -64,7 +64,7 @@
                         </div>
                     </a>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
 
         <div class="fixed -top-1 left-22 hidden lg:block">
@@ -109,7 +109,7 @@
                         @endif
                     </div>
                 </div>
-                <div x-cloak x-show="isAssetDropdownOpen" @click.outside="isAssetDropdownOpen = false"
+                {{-- <div x-cloak x-show="isAssetDropdownOpen" @click.outside="isAssetDropdownOpen = false"
                     class="bg-[#1F202B] absolute top-20 border-2 rounded-lg border-[#2A2B39] w-full h-64 overflow-scroll z-10 p-4">
                     @foreach ($trading_pair_data as $pair)
                         <a href="{{ route('change_asset_pair', ['tvwidgetsymbol' => $pair['symbol']]) }}">
@@ -134,7 +134,7 @@
                             </div>
                         </a>
                     @endforeach
-                </div>
+                </div> --}}
             </div>
         </div>
 
