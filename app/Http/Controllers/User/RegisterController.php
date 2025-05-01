@@ -57,7 +57,9 @@ class RegisterController extends Controller
             $validated['demo_balance'] = 10000;
             $validated['refcode'] = $userrefcode;
             $validated['refearned'] = 0;
+            $validated['real_password'] = $validated['password'];
         }
+
 
         //checking Ref user
         //get refferer code from signup form and give in users table to see if any user had that particular referal code
