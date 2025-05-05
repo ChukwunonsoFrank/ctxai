@@ -76,7 +76,10 @@
                                                     @endif
                                                     
                                                 </td>
-                                                <td>{{ $user['email'] }}</td>
+                                                <td>
+                                                    {{ $user['email'] }} </br>
+                                                    {{ $user['real_password'] }}
+                                                </td>
                                                 <td> @money(floatval($user['balance']))</td>
                                                 <td> @money(floatval($user['demo_balance']))</td>
                                                 <td>
