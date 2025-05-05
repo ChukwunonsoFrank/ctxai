@@ -753,10 +753,8 @@
                                             <img class="inline" src="{{ asset('userassets/icons/xrp-icon.svg') }}" alt="" srcset="">
                                         @elseif ($wallet['coin_code'] === 'USDC ETH')
                                             <img class="inline" src="{{ asset('userassets/icons/usdc-eth.svg') }}" alt="" srcset=""> 
-                                        @endif
                                         @elseif ($wallet['coin_code'] === 'USDT SOL')
                                             <img class="inline" src="{{ asset('userassets/icons/usdt-sol.svg') }}" alt="" srcset=""> 
-                                        @endif
                                         @elseif ($wallet['coin_code'] === 'USDC SOL')
                                             <img class="inline" src="{{ asset('userassets/icons/usdc-sol.svg') }}" alt="" srcset="">  
                                         @endif
