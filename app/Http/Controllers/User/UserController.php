@@ -1402,7 +1402,7 @@ class UserController extends Controller
         if ($request->isMethod('POST')) {
             $tradingbot = tradingbot::where('id', intval($userTradingBotId))->first()->toArray();
             $companyCommission = $this->calculateCompanyCommission($tradingbot['amount_earned']);
-            if ($tradingbot['account_type'] === "live" & $tradingbot['status'] === '1') {
+            if ($tradingbot['account_type'] === "live" && $tradingbot['status'] === '1') {
                 try {
                     $newuserbalance = floatval(auth()->user()->balance) + round(floatval($tradingbot['amount_earned']), 2)  + floatval($tradingbot['amount']) - floatval($companyCommission);
                     DB::transaction(function () use ($newuserbalance, $userTradingBotId, $robotStoppedAt) {
@@ -1490,7 +1490,7 @@ class UserController extends Controller
 
                     return view('user.tradingbot')->with($this->getUserDetails())->with(['trading_pair_data' => $trading_and_selected_asset_data['trading_pair_data'], 'selected_asset_data' => $trading_and_selected_asset_data['selected_asset_data'], 'next_page_url' => $tradingbotshistory['next_page_url'], 'prev_page_url' => $tradingbotshistory['prev_page_url']])->with(compact('tradingbots', 'tradingbotshistory', 'transformedTradingBotsHistory'))->with(compact('tradeEntry'));
                 }
-            } elseif ($tradingbot['account_type'] === "demo" & $tradingbot['status'] === '1') {
+            } elseif ($tradingbot['account_type'] === "demo" && $tradingbot['status'] === '1') {
                 try {
                     $newuserdemo_balance = floatval(auth()->user()->demo_balance) + round(floatval($tradingbot['amount_earned']), 2) + floatval($tradingbot['amount']) - floatval($companyCommission);
                     DB::transaction(function () use ($newuserdemo_balance, $userTradingBotId, $robotStoppedAt) {
