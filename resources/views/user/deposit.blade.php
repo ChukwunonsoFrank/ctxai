@@ -151,6 +151,15 @@
                                                 @if($deposit['gateway'] === "XRP")
                                                     XRP
                                                 @endif
+                                                @if($deposit['gateway'] === "USDC ETH")
+                                                    USDC (Ethereum)
+                                                @endif
+                                                @if($deposit['gateway'] === "USDT SOL")
+                                                    USDT (Solana)
+                                                @endif
+                                                @if($deposit['gateway'] === "USDC SOL")
+                                                    USDC (Solana)
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">
                                                 @if ($deposit['deposit_status'] == 1)

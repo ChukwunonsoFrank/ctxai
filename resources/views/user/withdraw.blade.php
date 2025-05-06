@@ -60,6 +60,15 @@
                                                 @if($withdraw['gateway'] === "TRX")
                                                     Tron
                                                 @endif
+                                                @if($withdraw['gateway'] === "USDC ETH")
+                                                    USDC (Ethereum)
+                                                @endif
+                                                @if($withdraw['gateway'] === "USDT SOL")
+                                                    USDT (Solana)
+                                                @endif
+                                                @if($withdraw['gateway'] === "USDC SOL")
+                                                    USDC (Solana)
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-[#FFFFFF]">{{ $withdraw['userwallet_id']}}
                                             </td>
