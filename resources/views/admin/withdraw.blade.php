@@ -81,6 +81,15 @@
                                                     @if($withdraw->gateway === "XRP")
                                                         XRP
                                                     @endif
+                                                    @if($withdraw->gateway === "USDC ETH")
+                                                    USDC (Ethereum)
+                                                @endif
+                                                @if($withdraw->gateway === "USDT SOL")
+                                                    USDT (Solana)
+                                                @endif
+                                                @if($withdraw->gateway === "USDC SOL")
+                                                    USDC (Solana)
+                                                @endif
                                                 </td>
                                                 <td>{{ $withdraw->amount }}</td>
                                                 <td>{{ $withdraw->userwallet_id }}</td>

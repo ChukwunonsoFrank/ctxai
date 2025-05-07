@@ -83,6 +83,15 @@
                                                     @if($deposit->gateway === "ReferralBonus")
                                                         Referral Bonus
                                                     @endif
+                                                    @if($deposit->gateway === "USDC ETH")
+                                                    USDC (Ethereum)
+                                                @endif
+                                                @if($deposit->gateway === "USDT SOL")
+                                                    USDT (Solana)
+                                                @endif
+                                                @if($deposit->gateway === "USDC SOL")
+                                                    USDC (Solana)
+                                                @endif
                                                 </td>
                                                 <td>@money(floatval($deposit->amount))</td>
                                                 <td>
