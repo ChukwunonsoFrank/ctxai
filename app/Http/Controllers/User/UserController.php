@@ -1406,7 +1406,7 @@ class UserController extends Controller
             if ($tradingbot['account_type'] === "live" && $tradingbot['status'] === '1') {
                 try {
                     $newuserbalance = floatval(auth()->user()->balance) + round(floatval($tradingbot['amount_earned']), 2)  + floatval($tradingbot['amount']) - floatval($companyCommission);
-                    Log::info('$newuserbalance');
+                    Log::info($newuserbalance);
                     DB::transaction(function () use ($newuserbalance, $userTradingBotId, $robotStoppedAt) {
                         tradingbot::where('id', intval($userTradingBotId))->update(['status' => '0']);
                         Trade::where('bot_id', intval($userTradingBotId))->update(['stopped_robot_at_position' => intval($robotStoppedAt)]);
